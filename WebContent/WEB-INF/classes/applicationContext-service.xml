@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	
+	<bean id="sysUserService" class="soy.web.service.impl.SysUserServiceImpl">
+		<property name="sysUserDAO" ref="sysUserDAO" />
+		<property name="sysRoleDAO" ref="sysRoleDAO" />
+		<property name="sysFunctionDAO" ref="sysFunctionDAO" />
+	</bean>
+	
+	<bean id="sysRoleService" class="soy.web.service.impl.SysRoleServiceImpl">
+		<property name="sysRoleDAO" ref="sysRoleDAO" />
+	</bean>
+	
+	<bean id="baseClassService" class="soy.web.service.impl.BaseClassServiceImpl">
+		<property name="baseClassDAO" ref="baseClassDAO" />
+	</bean>
+	
+	<bean id="baseDeliveryService" class="soy.web.service.impl.BaseDeliveryServiceImpl">
+		<property name="baseDeliveryDAO" ref="baseDeliveryDAO" />
+	</bean>
+	
+	<bean id="baseIndustryService" class="soy.web.service.impl.BaseIndustryServiceImpl">
+		<property name="baseIndustryDAO" ref="baseIndustryDAO" />
+	</bean>
+	
+	<bean id="baseMaintaintypeService" class="soy.web.service.impl.BaseMaintaintypeServiceImpl">
+		<property name="baseMaintaintypeDAO" ref="baseMaintaintypeDAO" />
+	</bean>
+	
+	<bean id="basePaymentService" class="soy.web.service.impl.BasePaymentServiceImpl">
+		<property name="basePaymentDAO" ref="basePaymentDAO" />
+	</bean>
+	
+	<bean id="baseQualityService" class="soy.web.service.impl.BaseQualityServiceImpl">
+		<property name="baseQualityDAO" ref="baseQualityDAO" />
+	</bean>
+	
+	<bean id="baseSourceService" class="soy.web.service.impl.BaseSourceServiceImpl">
+		<property name="baseSourceDAO" ref="baseSourceDAO" />
+	</bean>
+	
+	<bean id="baseTypeService" class="soy.web.service.impl.BaseTypeServiceImpl">
+		<property name="baseTypeDAO" ref="baseTypeDAO" />
+	</bean>
+	
+	<bean id="baseStateService" class="soy.web.service.impl.BaseStateServiceImpl">
+		<property name="baseStateDAO" ref="baseStateDAO" />
+	</bean>
+	
+	<bean id="sysCustService" class="soy.web.service.impl.SysCustServiceImpl">
+		<property name="sysCustDAO" ref="sysCustDAO" />
+		<property name="baseIndustryDAO" ref="baseIndustryDAO" />
+		<property name="baseSourceDAO" ref="baseSourceDAO" />
+		<property name="baseStateDAO" ref="baseStateDAO" />
+		<property name="baseTypeDAO" ref="baseTypeDAO" />
+	</bean>
+	
+	<bean id="sysContactService" class="soy.web.service.impl.SysContactServiceImpl">
+		<property name="sysContactDAO" ref="sysContactDAO" />
+		<property name="sysCustDAO" ref="sysCustDAO" />
+	</bean>
+	
+	<bean id="sysBusinessService" class="soy.web.service.impl.SysBusinessServiceImpl">
+		<property name="sysBusinessDAO" ref="sysBusinessDAO" />
+		<property name="sysCustDAO" ref="sysCustDAO" />
+		<property name="baseDeliveryDAO" ref="baseDeliveryDAO" />
+		<property name="basePaymentDAO" ref="basePaymentDAO" />
+		<property name="baseClassDAO" ref="baseClassDAO" />
+		<property name="baseQualityDAO" ref="baseQualityDAO" />
+	</bean>
+	
+	<bean id="sysMaintainService" class="soy.web.service.impl.SysMaintainServiceImpl">
+		<property name="sysMaintainDAO" ref="sysMaintainDAO" />
+		<property name="sysCustDAO" ref="sysCustDAO" />
+		<property name="baseMaintaintypeDAO" ref="baseMaintaintypeDAO" />
+	</bean>
+	
+	<bean id="sysRecordService" class="soy.web.service.impl.SysRecordServiceImpl">
+		<property name="sysRecordDAO" ref="sysRecordDAO" />
+	</bean>
+	
+	<bean id="baseProductionService" class="soy.web.service.impl.BaseProductionServiceImpl">
+		<property name="baseProductionDAO" ref="baseProductionDAO" />
+	</bean>
+	
+	<bean id="sysSupplierService" class="soy.web.service.impl.SysSupplierServiceImpl">
+		<property name="sysSupplierDAO" ref="sysSupplierDAO" />
+		<property name="baseMainDAO" ref="baseMainDAO" />
+		<property name="baseClassDAO" ref="baseClassDAO" />
+		<property name="baseQualityDAO" ref="baseQualityDAO" />
+	</bean>
+	
+	<bean id="baseMainService" class="soy.web.service.impl.BaseMainServiceImpl">
+		<property name="baseMainDAO" ref="baseMainDAO" />
+	</bean>
+</beans>

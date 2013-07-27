@@ -1,0 +1,38 @@
+@CHARSET "UTF-8";
+
+.tableBorder tr {
+	background: #F5F5F5;
+}
+
+.tr {
+	background-color: #B1B4D1;
+}
+
+.tableBorder td {
+	padding-left: 5px;
+	padding-top: 3px;
+	padding-bottom: 3px;
+	padding-right: 5px;
+}
+
+.tableBorder {
+	BORDER-RIGHT: #b1b4d1 1px solid;
+	BORDER-TOP: #b1b4d1 1px solid;
+	FONT-WEIGHT: normal;
+	FONT-SIZE: 12px;
+	BORDER-LEFT: #b1b4d1 1px solid;
+	LINE-HEIGHT: normal;
+	BORDER-BOTTOM: #b1b4d1 1px solid;
+	FONT-STYLE: normal;
+	BACKGROUND-COLOR: #ffffff;
+	FONT-VARIANT: normal;
+	padding-left: 5px;
+}
+
+.tableBorder input[type=text],textarea {
+	width: 100%;
+}
+
+.tableBorder select {
+	width: 100%;
+}

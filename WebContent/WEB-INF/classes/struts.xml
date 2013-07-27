@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+
+	<!-- struts.ui.theme=simple可以解决struts2标签自动换行问题，即不再自动被添加进table标签中 -->
+	<constant name="struts.ui.theme" value="simple" />
+	<constant name="struts.ui.templateDir" value="template" />
+	<constant name="struts.ui.templateSuffix" value="ftl" />
+
+	<!-- 处理编码乱码问题 -->
+	<!-- <constant name="struts.i18n.encoding" value="gbk"></constant> -->
+	<constant name="struts.i18n.encoding" value="UTF-8" />
+
+	<constant name="struts.objectFactory" value="spring"></constant>
+
+
+	<constant name="struts.devMode" value="false" />
+
+
+
+	<!-- session超时拦截器 -->
+	<package name="iterceptor" namespace="/" extends="struts-default">
+		<interceptors>
+			<!-- 自定义拦截器 -->
+			<interceptor name="permission"
+				class="soy.basic.iterceptor.SessionIterceptor" />
+			<!-- 配制默许的拦截器到拦截器栈 -->
+			<interceptor-stack name="permissionStack">
+				<!-- 此处先后顺序没影响 -->
+				<interceptor-ref name="permission" />
+				<interceptor-ref name="defaultStack" />
+
+				<!-- 防止重复提交 -->
+				<!--<interceptor-ref name="token" /> -->
+			</interceptor-stack>
+		</interceptors>
+		<!-- 配置默认的拦截器 -->
+		<default-interceptor-ref name="permissionStack" />
+
+		<!-- 配置默认的类 -->
+		<default-class-ref class="com.opensymphony.xwork2.ActionSupport"></default-class-ref>
+
+		<!-- 全局变量,超时返回登录页面 -->
+		<global-results>
+			<result name="loginPage">/include/session.jsp</result>
+			<result name="error">/include/session.jsp</result>
+			<result name="invalid.token">/include/session.jsp</result>
+		</global-results>
+
+
+		<global-exception-mappings>
+			<exception-mapping result="error" exception="java.lang.RuntimeException"></exception-mapping>
+			<exception-mapping result="error" exception="java.lang.Exception"></exception-mapping>
+		</global-exception-mappings>
+
+	</package>
+
+	<!-- session超时不需要返回登录页面的配置文件 -->
+	<package name="noIterceptor" namespace="/" extends="struts-default">
+	</package>
+	<!-- session超时返回登录页面的配置文件 -->
+	<package name="nscloud" namespace="/" extends="iterceptor">
+	</package>
+
+	<package name="loginModel" extends="struts-default" namespace="/login">
+		<action name="loginAction" class="soy.web.action.LoginAction">
+			<result name="success">/main.jsp</result>
+			<result name="loginPage">/login.jsp</result>
+			<result name="fail">/login.jsp</result>
+		</action>
+	</package>
+
+	<!-- 系统管理模块 -->
+	<package name="systemModel" extends="iterceptor" namespace="/system">
+		<action name="baseClassAction" class="soy.web.action.BaseClassAction">
+			<result name="add">/jsp/system/class/class.jsp</result>
+			<result name="query">/jsp/system/class/classQuery.jsp</result>
+			<result name="edit">/jsp/system/class/class.jsp</result>
+		</action>
+		<action name="baseDeliveryAction" class="soy.web.action.BaseDeliveryAction">
+			<result name="add">/jsp/system/delivery/delivery.jsp</result>
+			<result name="query">/jsp/system/delivery/deliveryQuery.jsp</result>
+			<result name="edit">/jsp/system/delivery/delivery.jsp</result>
+		</action>
+		<action name="baseIndustryAction" class="soy.web.action.BaseIndustryAction">
+			<result name="add">/jsp/system/industry/industry.jsp</result>
+			<result name="query">/jsp/system/industry/industryQuery.jsp</result>
+			<result name="edit">/jsp/system/industry/industry.jsp</result>
+		</action>
+		<action name="baseMaintaintypeAction" class="soy.web.action.BaseMaintaintypeAction">
+			<result name="add">/jsp/system/maintaintype/maintaintype.jsp
+			</result>
+			<result name="query">/jsp/system/maintaintype/maintaintypeQuery.jsp
+			</result>
+			<result name="edit">/jsp/system/maintaintype/maintaintype.jsp
+			</result>
+		</action>
+		<action name="basePaymentAction" class="soy.web.action.BasePaymentAction">
+			<result name="add">/jsp/system/payment/payment.jsp</result>
+			<result name="query">/jsp/system/payment/paymentQuery.jsp</result>
+			<result name="edit">/jsp/system/payment/payment.jsp</result>
+		</action>
+		<action name="baseQualityAction" class="soy.web.action.BaseQualityAction">
+			<result name="add">/jsp/system/quality/quality.jsp</result>
+			<result name="query">/jsp/system/quality/qualityQuery.jsp</result>
+			<result name="edit">/jsp/system/quality/quality.jsp</result>
+		</action>
+		<action name="baseSourceAction" class="soy.web.action.BaseSourceAction">
+			<result name="add">/jsp/system/source/source.jsp</result>
+			<result name="query">/jsp/system/source/sourceQuery.jsp</result>
+			<result name="edit">/jsp/system/source/source.jsp</result>
+		</action>
+		<action name="baseTypeAction" class="soy.web.action.BaseTypeAction">
+			<result name="add">/jsp/system/type/type.jsp</result>
+			<result name="query">/jsp/system/type/typeQuery.jsp</result>
+			<result name="edit">/jsp/system/type/type.jsp</result>
+		</action>
+		<action name="baseStateAction" class="soy.web.action.BaseStateAction">
+			<result name="add">/jsp/system/state/state.jsp</result>
+			<result name="query">/jsp/system/state/stateQuery.jsp</result>
+			<result name="edit">/jsp/system/state/state.jsp</result>
+		</action>
+		<action name="sysUserAction" class="soy.web.action.SysUserAction">
+			<result name="add">/jsp/system/user/user.jsp</result>
+			<result name="query">/jsp/system/user/userQuery.jsp</result>
+			<result name="edit">/jsp/system/user/user.jsp</result>
+		</action>
+		<action name="baseMainAction" class="soy.web.action.BaseMainAction">
+			<result name="add">/jsp/system/main/main.jsp</result>
+			<result name="edit">/jsp/system/main/main.jsp</result>
+			<result name="query">/jsp/system/main/mainQuery.jsp</result>
+		</action>
+	</package>
+
+	<!-- 客户管理模块 -->
+	<package name="sysCustModel" extends="iterceptor" namespace="/sysCust">
+		<action name="sysCustAction" class="soy.web.action.SysCustAction">
+			<result name="add">/jsp/cust/cust.jsp</result>
+			<result name="query">/jsp/cust/custQuery.jsp</result>
+			<result name="edit">/jsp/cust/cust.jsp</result>
+			<result name="contactQuery">/jsp/contact/contactQuery.jsp</result>
+			<result name="maintainQuery">/jsp/maintain/maintainQueryForCust.jsp</result>
+			<result name="businessQuery">/jsp/business/businessQueryForCust.jsp</result>
+			<result name="feature">/jsp/cust/feature.jsp</result>
+		</action>
+		<action name="sysContactAction" class="soy.web.action.SysContactAction">
+			<result name="add">/jsp/contact/contact.jsp</result>
+			<result name="query">/jsp/contact/contactQuery.jsp</result>
+			<result name="edit">/jsp/contact/contact.jsp</result>
+		</action>
+	</package>
+
+	<!-- 业务管理模块 -->
+	<package name="sysBusinessModel" extends="iterceptor" namespace="/sysBusiness">
+		<action name="sysBusinessAction" class="soy.web.action.SysBusinessAction">
+			<result name="add">/jsp/business/business.jsp</result>
+			<result name="query">/jsp/business/businessQuery.jsp</result>
+			<result name="edit">/jsp/business/business.jsp</result>
+			<result name="claim">/jsp/business/claim.jsp</result>
+			<result name="feature">/jsp/business/feature.jsp</result>
+			<result name="records">/jsp/record/recordQuery.jsp</result>
+		</action>
+		<action name="sysBusinessForCustAction" class="soy.web.action.SysBusinessForCustAction">
+			<result name="add">/jsp/business/businessForCust.jsp</result>
+			<result name="query">/jsp/business/businessQueryForCust.jsp</result>
+			<result name="edit">/jsp/business/businessForCust.jsp</result>
+		</action>
+	</package>
+
+	<!-- 维护管理模块 -->
+	<package name="sysMaintainModel" extends="iterceptor" namespace="/sysMaintain">
+		<!-- 维护管理-维护管理 -->
+		<action name="sysMaintainAction" class="soy.web.action.SysMaintainAction">
+			<result name="add">/jsp/maintain/maintain.jsp</result>
+			<result name="query">/jsp/maintain/maintainQuery.jsp</result>
+			<result name="edit">/jsp/maintain/maintain.jsp</result>			
+		</action>
+		<!-- 客户管理-维护管理 -->
+		<action name="sysMaintainForCustAction" class="soy.web.action.SysMaintainForCustAction">
+			<result name="add">/jsp/maintain/maintainForCust.jsp</result>
+			<result name="query">/jsp/maintain/maintainQueryForCust.jsp</result>
+			<result name="edit">/jsp/maintain/maintainForCust.jsp</result>
+		</action>
+	</package>
+	
+	<!-- 生产记录模块 -->
+	<package name="sysRecordModel" extends="iterceptor" namespace="/sysRecord">
+		<action name="sysRecordAction" class="soy.web.action.SysRecordAction">
+			<result name="add">/jsp/record/record.jsp</result>
+			<result name="query">/jsp/record/recordQuery.jsp</result>
+			<result name="edit">/jsp/record/record.jsp</result>		
+		</action>
+	</package>
+	
+	<!-- 供应商 -->
+	<package name="sysSupplierModel" extends="iterceptor" namespace="/sysSupplier">
+		<action name="sysSupplierAction" class="soy.web.action.SysSupplierAction">
+			<result name="add">/jsp/supplier/supplier.jsp</result>
+			<result name="edit">/jsp/supplier/supplier.jsp</result>
+			<result name="query">/jsp/supplier/supplierQuery.jsp</result>
+		</action>
+	</package>
+</struts>    

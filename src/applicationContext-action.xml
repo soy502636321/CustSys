@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<bean id="loginAction" class="soy.web.action.LoginAction">
+		<property name="sysUserService" ref="sysUserService" />
+	</bean>
+
+	<bean id="baseClassAction" class="soy.web.action.BaseClassAction">
+		<property name="baseClassService" ref="baseClassService" />
+	</bean>
+	
+	<bean id="baseDeliveryAction" class="soy.web.action.BaseDeliveryAction">
+		<property name="baseDeliveryService" ref="baseDeliveryService" />
+	</bean>
+	
+	<bean id="baseIndustryAction" class="soy.web.action.BaseIndustryAction">
+		<property name="baseIndustryService" ref="baseIndustryService" />
+	</bean>
+	
+	<bean id="baseMaintaintypeAction" class="soy.web.action.BaseMaintaintypeAction">
+		<property name="baseMaintaintypeService" ref="baseMaintaintypeService" />
+	</bean>
+	
+	<bean id="basePaymentAction" class="soy.web.action.BasePaymentAction">
+		<property name="basePaymentService" ref="basePaymentService" />
+	</bean>
+	
+	<bean id="baseQualityAction" class="soy.web.action.BaseQualityAction">
+		<property name="baseQualityService" ref="baseQualityService" />
+	</bean>
+	
+	<bean id="baseSourceAction" class="soy.web.action.BaseSourceAction">
+		<property name="baseSourceService" ref="baseSourceService" />
+	</bean>
+	
+	<bean id="baseTypeAction" class="soy.web.action.BaseTypeAction">
+		<property name="baseTypeService" ref="baseTypeService" />
+	</bean>
+	
+	<bean id="baseStateAction" class="soy.web.action.BaseStateAction">
+		<property name="baseStateService" ref="baseStateService" />
+	</bean>
+	
+	<bean id="sysUserAction" class="soy.web.action.SysUserAction">
+		<property name="sysUserService" ref="sysUserService" />
+	</bean>
+	
+	<bean id="sysCustAction" class="soy.web.action.SysCustAction">
+		<property name="sysCustService" ref="sysCustService" />
+		<property name="sysContactService" ref="sysContactService" />
+		<property name="sysMaintainService" ref="sysMaintainService" />
+	</bean>
+	
+	<bean id="sysContactAction" class="soy.web.action.SysContactAction">
+		<property name="sysContactService" ref="sysContactService" />
+	</bean>
+	
+	<bean id="sysBusinessAction" class="soy.web.action.SysBusinessAction">
+		<property name="sysBusinessService" ref="sysBusinessService" />
+	</bean>
+	
+	<bean id="sysBusinessForCustAction" class="soy.web.action.SysBusinessForCustAction">
+		<property name="sysBusinessService" ref="sysBusinessService" />
+	</bean>
+	
+	<bean id="sysMaintainAction" class="soy.web.action.SysMaintainAction">
+		<property name="sysMaintainService" ref="sysMaintainService" />
+	</bean>
+	
+	<bean id="sysMaintainForCustAction" class="soy.web.action.SysMaintainForCustAction">
+		<property name="sysMaintainService" ref="sysMaintainService" />
+	</bean>
+	
+	<bean id="sysSupplierAction" class="soy.web.action.SysSupplierAction">
+		<property name="sysSupplierService" ref="sysSupplierService" />
+	</bean>
+</beans>

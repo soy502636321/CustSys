@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<options>
+	<option	id="0001" comment="性别">
+		<item key="01">男</item>
+		<item key="02">女</item>
+	</option>
+	<option id="0002" comment="是否">
+		<item key="01">是</item>
+		<item key="02">否</item>
+	</option>
+	<option id="0003" comment="帐号状态">
+		<item key="01">正常</item>
+		<item key="02">禁用</item>
+	</option>
+</options>

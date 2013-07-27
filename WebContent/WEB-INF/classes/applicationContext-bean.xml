@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<bean id="baseClassDAO" class="soy.basic.dao.impl.BaseClassDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<bean id="baseDeliveryDAO" class="soy.basic.dao.impl.BaseDeliveryDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<bean id="baseIndustryDAO" class="soy.basic.dao.impl.BaseIndustryDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<bean id="baseMaintaintypeDAO" class="soy.basic.dao.impl.BaseMaintaintypeDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<bean id="basePaymentDAO" class="soy.basic.dao.impl.BasePaymentDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<bean id="baseQualityDAO" class="soy.basic.dao.impl.BaseQualityDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<bean id="baseSourceDAO" class="soy.basic.dao.impl.BaseSourceDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<bean id="baseStateDAO" class="soy.basic.dao.impl.BaseStateDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<bean id="baseTypeDAO" class="soy.basic.dao.impl.BaseTypeDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<bean id="sysBusinessDAO" class="soy.basic.dao.impl.SysBusinessDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<bean id="sysContactDAO" class="soy.basic.dao.impl.SysContactDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<bean id="sysCustDAO" class="soy.basic.dao.impl.SysCustDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<bean id="sysFunctionDAO" class="soy.basic.dao.impl.SysFunctionDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<bean id="sysMaintainDAO" class="soy.basic.dao.impl.SysMaintainDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<bean id="sysRoleDAO" class="soy.basic.dao.impl.SysRoleDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<bean id="sysUserDAO" class="soy.basic.dao.impl.SysUserDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<bean id="sysRecordDAO" class="soy.basic.dao.impl.SysRecordDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<bean id="baseProductionDAO" class="soy.basic.dao.impl.BaseProductionDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<bean id="sysSupplierDAO" class="soy.basic.dao.impl.SysSupplierDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<bean id="baseMainDAO" class="soy.basic.dao.impl.BaseMainDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+</beans>
