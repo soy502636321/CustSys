@@ -6,6 +6,10 @@
 	<jsp-version>1.2</jsp-version>
 	<uri>/hq</uri>
 	<short-name>hq</short-name>
+	<description>用户标记权限的</description>
+	<display-name>custsys</display-name>
+	<small-icon>small</small-icon>
+	<large-icon>large</large-icon>
 	<tag>
 		<name>button</name>
 		<tag-class>soy.common.tag.ButtonTag</tag-class>
