@@ -53,7 +53,13 @@ public class SysCustAction extends BaseAction {
 		setList(list);
 		return ForwardUtil.FORWARD_QUERY_PAGE;
 	}
-
+	
+	public String search() {
+		log.debug("跳转到搜索界面");
+		return ForwardUtil.FORWARD_SEARCH_PAGE;
+	}
+	
+	
 	/**
 	 * 添加客户
 	 * @return

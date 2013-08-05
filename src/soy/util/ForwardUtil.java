@@ -38,4 +38,6 @@ public class ForwardUtil {
 	public final static String FORWARD_EDIT_ORGAN_PAGE = "editOrganzation";
 //	public final static String FORWARD_COPY_SECTION_PAGE = "copySection";
 
+	public static final String FORWARD_SEARCH_PAGE = "search";
+
 }

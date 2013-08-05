@@ -12,6 +12,7 @@
 		<s:form action="sysCustAction" namespace="/sysCust">
 			<br>
 			<table>
+				<!-- 
 				<tr>
 					<td>
 						客户编号
@@ -78,9 +79,10 @@
 						<s:textarea name="sysCustVO.remark" />
 					</td>
 				</tr>
+				-->
 				<tr>
 					<td colspan="4">
-						<s:submit value="查  询" action="sysCustAction!query"></s:submit>
+						<s:submit value="查  询" onclick="return openSearchDialog(this, 'sysCustAction!search');" action="sysCustAction!query" />
 						&nbsp;&nbsp;&nbsp;
 						<s:reset value="重  置"></s:reset>
 					</td>

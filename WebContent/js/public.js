@@ -346,3 +346,43 @@ function search(o) {
 	var form = $(o).parents('form:first');
 	form.attr('target', '');
 }
+
+function openSearchDialog(o, sUrl, sWeight, sHeight) {
+	if (!sWeight) {
+		sWeight = 500; 
+	}
+	if (!sHeight) {
+		sHeight = 500;
+	}
+	var returnValue = window.showModalDialog(sUrl,window,"dialogHeight:"+sHeight+"px;dialogWidth:"+sWeight+"px;center: yes; help: no;status: no");
+	if (returnValue) {
+		for (pro in returnValue) {
+			$(o).append("<input type='hidden' name='" + pro + "' value='" + returnValue[pro] + "' />");
+		}
+		return true;
+	} 
+	return false;
+}
+
+function searchSubmit(o) {
+	var map = new Object();
+	//文本输入框
+	$('form').find('input:text').each(function(i) {
+		if ($(this).val() && $(this).val().length > 0 && $(this).attr('name') && $(this).attr('name').length > 0) {
+			map[$(this).attr('name')] = $(this).val();
+		}
+	});
+	//单选下拉框
+	$('form').find('select[multiple="false"]').each(function(i) {
+		alert($(this).prop('multiple') == false);
+		if ($(this).attr('name') && $(this).attr('name').length > 0 && $(this) && $(this).val().length > 0 && !$(this).prop('multiple')) {
+			map[$(this).attr('name')] = $(this).val();
+		}
+	});
+	 window.returnValue = map;
+	 window.opener = null;
+     // 取消询问弹窗
+     window.open('', '_self');
+     window.close();
+     return false;
+}
