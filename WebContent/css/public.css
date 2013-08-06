@@ -1,4 +1,7 @@
 @CHARSET "UTF-8";
+.tdCenter {
+	text-align: center;
+}
 
 .tableBorder tr {
 	background: #F5F5F5;

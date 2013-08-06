@@ -235,7 +235,7 @@ function submitCheck(o) {
 					}
 				});
 		if (b) {
-		$(form).find('select').each(function(i) {
+			$(form).find('select').each(function(i) {
 						if ($(this).attr('data') && !$(this).val() && b) {
 							alert('请选择' + $(this).attr('data') + '!');
 							b = false;
@@ -327,20 +327,21 @@ function closeWindow(o) {
 }
 
 function isNumber(o) {
-	var pattern=new RegExp(/^\d+(\.\d+)?$/);
+	var pattern = new RegExp(/^\d+(\.\d+)?$/);
 	var form = $(o).parents('form:first');
 	b = true;
 	if (form) {
 		$(form).find('input').each(function(i) {
-			if ($(this).attr('num') && !pattern.test($(this).val()) && b ) {
-				alert($(this).attr('num') + '只能为数字!');
-				b = false;
-				$(this).focus();
-			}
-		});
+					if ($(this).attr('num') && !pattern.test($(this).val())
+							&& b) {
+						alert($(this).attr('num') + '只能为数字!');
+						b = false;
+						$(this).focus();
+					}
+				});
 	}
 	return b;
-} 
+}
 
 function search(o) {
 	var form = $(o).parents('form:first');
@@ -349,40 +350,71 @@ function search(o) {
 
 function openSearchDialog(o, sUrl, sWeight, sHeight) {
 	if (!sWeight) {
-		sWeight = 500; 
+		sWeight = 500;
 	}
 	if (!sHeight) {
 		sHeight = 500;
 	}
-	var returnValue = window.showModalDialog(sUrl,window,"dialogHeight:"+sHeight+"px;dialogWidth:"+sWeight+"px;center: yes; help: no;status: no");
+	var returnValue = window.showModalDialog(sUrl, window, "dialogHeight:"
+					+ sHeight + "px;dialogWidth:" + sWeight
+					+ "px;center: yes; help: no;status: no");
 	if (returnValue) {
+		var form = $(o).parents('form:first');
 		for (pro in returnValue) {
-			$(o).append("<input type='hidden' name='" + pro + "' value='" + returnValue[pro] + "' />");
+			if (returnValue[pro].value) {
+				for (v in returnValue[pro].value) {
+					form.append("<input type='hidden' name='" + pro + "' value='"
+						+ returnValue[pro].value[v] + "' />");
+				}
+			} else {
+				form.append("<input type='hidden' name='" + pro + "' value='"
+						+ returnValue[pro] + "' />");
+			}
 		}
+		form.attr('target', '');		
 		return true;
-	} 
+	}
 	return false;
 }
 
 function searchSubmit(o) {
 	var map = new Object();
-	//文本输入框
+	// 文本输入框
 	$('form').find('input:text').each(function(i) {
-		if ($(this).val() && $(this).val().length > 0 && $(this).attr('name') && $(this).attr('name').length > 0) {
+		if ($(this).val() && $(this).val().length > 0 && $(this).attr('name')
+				&& $(this).attr('name').length > 0) {
 			map[$(this).attr('name')] = $(this).val();
 		}
 	});
-	//单选下拉框
-	$('form').find('select[multiple="false"]').each(function(i) {
-		alert($(this).prop('multiple') == false);
-		if ($(this).attr('name') && $(this).attr('name').length > 0 && $(this) && $(this).val().length > 0 && !$(this).prop('multiple')) {
+	// 单选下拉框
+	$('form').find('select').each(function(i) {
+		if ($(this).attr('name') && $(this).attr('name').length > 0 && $(this).val() && $(this).val().length > 0 && !$(this).prop('multiple')) {
 			map[$(this).attr('name')] = $(this).val();
 		}
 	});
-	 window.returnValue = map;
-	 window.opener = null;
-     // 取消询问弹窗
-     window.open('', '_self');
-     window.close();
-     return false;
+	//多选下拉框
+	$('form').find('select').each(function(i) {
+		if ($(this).prop('multiple') && $(this).attr('name') && $(this).attr('name').length > 0 && $(this).val()) {
+			map[$(this).attr('name')] = {
+				value: $(this).val()
+			}
+		}
+	});
+	//大文本输入框
+	$('form').find('textarea').each(function(i) {
+		if ($(this).attr('name') && $(this).attr('name').length > 0 && $(this).val() && $(this).val().length > 0) {
+			map[$(this).attr('name')] = $(this).val();
+		}
+	})
+	window.returnValue = map;
+	closeThisWindow(o);
+	return false;
+}
+
+function closeThisWindow(o) {
+	window.opener = null;
+	// 取消询问弹窗
+	window.open('', '_self');
+	window.close();
+	return false;
 }

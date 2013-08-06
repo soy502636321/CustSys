@@ -60,8 +60,9 @@
 				</td>
 			</tr>
 			<tr>
-				<td colspan="4">
+				<td colspan="4" class="tdCenter">
 					<s:submit value="确  定" onclick="return searchSubmit(this);" />
+					<s:submit value="关  闭" onclick="return closeThisWindow(this);"/>
 				</td>
 			</tr>
 		</table>

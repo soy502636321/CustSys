@@ -82,7 +82,7 @@
 				-->
 				<tr>
 					<td colspan="4">
-						<s:submit value="查  询" onclick="return openSearchDialog(this, 'sysCustAction!search');" action="sysCustAction!query" />
+						<s:submit value="查  询" onclick="return openSearchDialog(this, 'sysCustAction!search', 500, 300);" action="sysCustAction!query" />
 						&nbsp;&nbsp;&nbsp;
 						<s:reset value="重  置"></s:reset>
 					</td>
