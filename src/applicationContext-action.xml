@@ -43,6 +43,10 @@
 		<property name="baseStateService" ref="baseStateService" />
 	</bean>
 	
+	<bean id="baseProductionAction" class="soy.web.action.BaseProductionAction">
+		<property name="baseProductionService" ref="baseProductionService" />
+	</bean>
+	
 	<bean id="sysUserAction" class="soy.web.action.SysUserAction">
 		<property name="sysUserService" ref="sysUserService" />
 	</bean>

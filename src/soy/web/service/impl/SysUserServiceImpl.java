@@ -74,6 +74,7 @@ public class SysUserServiceImpl implements SysUserService {
 				sysUser.setPhoneTh1(sysUserVO.getPhoneTh1());
 				sysUser.setEmailTh1(sysUserVO.getEmailTh1());
 				sysUser.setRemark(sysUserVO.getRemark());
+				sysUser.setUserState("01");
 				getSysUserDAO().save(sysUser);
 
 				vo = new SysUserVO(sysUser);

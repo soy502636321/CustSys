@@ -130,6 +130,11 @@
 			<result name="edit">/jsp/system/main/main.jsp</result>
 			<result name="query">/jsp/system/main/mainQuery.jsp</result>
 		</action>
+		<action name="baseProductionAction" class="soy.web.action.BaseProductionAction">
+			<result name="add">/jsp/system/production/production.jsp</result>
+			<result name="edit">/jsp/system/production/production.jsp</result>
+			<result name="query">/jsp/system/production/productionQuery.jsp</result>
+		</action>
 	</package>
 
 	<!-- 客户管理模块 -->

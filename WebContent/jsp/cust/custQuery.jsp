@@ -2,7 +2,6 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
 <html>
 	<head>
-		<title></title>
 		<meta http-equiv="pragma" content="no-cache">
 		<meta http-equiv="cache-control" content="no-cache">
 		<meta http-equiv="expires" content="0">
@@ -12,79 +11,9 @@
 		<s:form action="sysCustAction" namespace="/sysCust">
 			<br>
 			<table>
-				<!-- 
-				<tr>
-					<td>
-						客户编号
-					</td>
-					<td>
-						<s:textfield name="sysCustVO.id" />
-					</td>
-					<td>
-						客户名称
-					</td>
-					<td>
-						<s:textfield name="sysCustVO.name" />
-					</td>
-					<td>
-						邮编
-					</td>
-					<td>
-						<s:textfield name="sysCustVO.postalCode" />
-					</td>
-					<td>
-						所属行业
-					</td>
-					<td>
-						<s:select list="baseIndustryVOs" listKey="id" listValue="industryName" name="sysCustVO.baseIndustryId" />
-					</td>
-					<td>
-						客户类型
-					</td>
-					<td>
-						<s:select list="baseTypeVOs" listKey="id" listValue="typeName" name="sysCustVO.baseTypeId"  />
-					</td>
-				</tr>
-				<tr>
-					<td>
-						客户来源
-					</td>
-					<td>
-						<s:select list="baseSourceVOs" listKey="id" listValue="sourceName" name="sysCustVO.baseSourceId" />
-					</td>
-					<td>
-						客户状态
-					</td>
-					<td>
-						<s:select list="baseStateVOs" listKey="id" listValue="stateName" name="sysCustVO.baseStateId" />
-					</td>
-					<td>
-						公司主页
-					</td>
-					<td colspan="3">
-						<s:textarea name="sysCustVO.website" />
-					</td>
-				</tr>
-				<tr>
-					<td>
-						详细地址
-					</td>
-					<td colspan="3">
-						<s:textarea name="sysCustVO.address" />
-					</td>
-					<td>
-						备注
-					</td>
-					<td colspan="3">
-						<s:textarea name="sysCustVO.remark" />
-					</td>
-				</tr>
-				-->
 				<tr>
 					<td colspan="4">
 						<s:submit value="查  询" onclick="return openSearchDialog(this, 'sysCustAction!search', 500, 300);" action="sysCustAction!query" />
-						&nbsp;&nbsp;&nbsp;
-						<s:reset value="重  置"></s:reset>
 					</td>
 				</tr>
 				<tr>
@@ -121,6 +50,7 @@
 					</td>
 				</tr>
 			</table>
+			
 			<hq:buttons function="14">
 				<hq:button name="添加客户" mode="all"></hq:button>
 				<hq:button name="修改客户" mode="single"></hq:button>

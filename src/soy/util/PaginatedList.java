@@ -116,5 +116,5 @@ public class PaginatedList implements org.displaytag.pagination.PaginatedList {
 	public void setStartNumber(int startNumber) {
 		this.startNumber = startNumber;
 	}
-
+	
 }

@@ -15,8 +15,6 @@
 				<tr>
 					<td colspan="4">
 						<s:submit value="查  询" onclick="return openSearchDialog(this, 'sysBusinessAction!search', 500, 500);" action="sysBusinessAction!query"></s:submit>
-						&nbsp;&nbsp;&nbsp;
-						<s:reset value="重  置"></s:reset>
 					</td>
 				</tr>
 				<tr>

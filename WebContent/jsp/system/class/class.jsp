@@ -1,4 +1,4 @@
-<!-- 订单种类-/增加/修改/ -->
+<!-- 业务种类-/增加/修改/ -->
 <jsp:directive.include file="/include/mainMenu.jsp" />
 <%@ page language="java" pageEncoding="UTF-8"%>
 <html>
@@ -16,13 +16,13 @@
 			style="margin: auto; width: 400px;">
 			<tr class="forumRowHighlight"
 				style="background-color: #3c7fb5; color: #ffffff;">
-				<td colspan="4">订单种类增加 <s:actionerror cssStyle="color:red;" />
+				<td colspan="4">业务种类增加 <s:actionerror cssStyle="color:red;" />
 					<s:actionmessage cssStyle="color:#ffffff;" /></td>
 			</tr>
 			<tr>
-				<td>订单种类名称:</td>
+				<td>业务种类名称:</td>
 				<td colspan="3"><s:textfield name="baseClassVO.className"
-						cssStyle="width: 100%" data="订单种类名字"></s:textfield></td>
+						cssStyle="width: 100%" data="业务种类名字"></s:textfield></td>
 			</tr>
 
 			<tr>

@@ -57,6 +57,11 @@
 								cellspacing="0">
 								<s:form method="post" action="loginAction" namespace="/login">
 									<tr>
+										<td colspan="2">
+											<s:actionerror cssStyle="color:red;" /><s:actionmessage cssStyle="color:blue;" />
+										</td>
+									</tr>
+									<tr>
 										<td height="35" align="right">用户名：</td>
 										<td><label> <s:textfield name="username"
 													class="textfile" /> </label></td>

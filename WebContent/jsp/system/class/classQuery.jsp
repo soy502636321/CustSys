@@ -1,4 +1,4 @@
-<!-- 订单种类-/列表/查询/ -->
+<!-- 业务种类-/列表/查询/ -->
 <jsp:directive.include file="/include/mainMenu.jsp" />
 <%@ page language="java" pageEncoding="UTF-8"%>
 <html>
@@ -15,13 +15,13 @@
 			<table>
 				<tr>
 					<td>
-						订单种类编号
+						业务种类编号
 					</td>
 					<td>
 						<s:textfield name="baseClassVO.id"></s:textfield>
 					</td>
 					<td>
-						订单种类名称
+						业务种类名称
 					</td>
 					<td>
 						<s:textfield name="baseClassVO.className"></s:textfield>
@@ -60,8 +60,8 @@
 								style="width:3%;"
 								title="<input type=checkbox class=checkbox name=cbAll onclick=changeCheckBoxAll(this,\"cbId\")>">
 							</display:column>
-							<display:column property="id" title="订单种类编号"></display:column>
-							<display:column property="className" title="订单种类名称"></display:column>
+							<display:column property="id" title="业务种类编号"></display:column>
+							<display:column property="className" title="业务种类名称"></display:column>
 							<display:column property="remark" title="备注"></display:column>
 						</display:table>
 					</td>

@@ -1,11 +1,14 @@
 package soy.web.action;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import soy.basic.database.entity.RoleFunction;
 import soy.basic.database.entity.SysFunction;
 import soy.basic.database.entity.SysUser;
 import soy.basic.vo.LoginUserVO;
@@ -62,7 +65,15 @@ public class LoginAction extends BaseAction {
 		} else {
 			log.debug("登录的用户是普通用户");
 			List list = new ArrayList();
-			list.addAll(user.getSysRole().getRoleFunctions());
+			Set set = user.getSysRole().getRoleFunctions();
+			if (set != null) {
+				Iterator iterator = set.iterator();
+				while (iterator.hasNext()) {
+					RoleFunction roleFunction = (RoleFunction) iterator.next();
+					SysFunction sysFunction = roleFunction.getSysFunction();
+					list.add(sysFunction);
+				}
+			}
 			userVO.setFunctionList(list);
 		}
 

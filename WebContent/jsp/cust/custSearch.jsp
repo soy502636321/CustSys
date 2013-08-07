@@ -9,6 +9,7 @@
 </head>
 
 <body>
+	
 	<s:form action="sysCustAction" namespace="/sysCust" class="form">
 		<table>
 			<tr>
