@@ -50,6 +50,8 @@ public class ButtonService extends Component {
 		LoginUserVO userVO = (LoginUserVO) request.getSession().getAttribute(
 				GlobalUtil.LOGINUSER);
 		List<SysFunction> functions = userVO.getFunctionList();
+		//获得登录除菜单之外的所有功能
+		List<SysFunction> otherFunctionList = userVO.getOtherFunctionList();
 		boolean b = false;
 		SysFunction parent = null;
 		for (SysFunction function : functions) {
@@ -63,7 +65,7 @@ public class ButtonService extends Component {
 			functions.addAll(parent.getSysFunctions());
 
 			for (SysFunction child : functions) {
-				if (child.getFunctionName().equals(getName())
+				if ((child.getFunctionName().equals(getName()) && otherFunctionList.contains(child)) 
 						|| "close".equals(getMode()) || "reset".equals(getType())) {
 					StringBuffer start = new StringBuffer();
 					start.append("<td>").append("<input ");
