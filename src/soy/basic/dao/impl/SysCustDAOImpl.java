@@ -18,8 +18,11 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import soy.basic.dao.SysCustDAO;
 import soy.basic.database.entity.SysCust;
 import soy.basic.vo.SysCustVO;
+import soy.basic.vo.SysUserVO;
+import soy.util.HibernateUtil;
 import soy.util.PaginatedList;
 import soy.util.StringUtil;
+import soy.util.SystemUtil;
 
 /**
  * 
@@ -139,7 +142,7 @@ public class SysCustDAOImpl extends HibernateDaoSupport implements SysCustDAO {
 			@Override
 			public PaginatedList doInHibernate(Session session)
 					throws HibernateException, SQLException {
-				String hql = "from SysCust t where t.id != -1";
+				String hql = "from SysCust t inner join t.sysBusinesses b where t.id != -1";
 				
 				if (vo != null) {
 					//客户编号
@@ -188,7 +191,7 @@ public class SysCustDAOImpl extends HibernateDaoSupport implements SysCustDAO {
 					}
 				}
 				
-				Query query = session.createQuery(hql);
+				Query query = session.createQuery("select t " + hql);
 				query.setFirstResult(list.getStartNumber()).setMaxResults(list.getObjectsPerPage());
 				list.setList(query.list());
 				
@@ -200,5 +203,167 @@ public class SysCustDAOImpl extends HibernateDaoSupport implements SysCustDAO {
 			}
 		});
 		return resullt; 
+	}
+	
+	@Override
+	public PaginatedList findPublic(final PaginatedList list, final SysCustVO vo) {
+		PaginatedList resullt = getHibernateTemplate().execute(new HibernateCallback<PaginatedList>() {
+
+			@Override
+			public PaginatedList doInHibernate(Session session)
+					throws HibernateException, SQLException {
+				String hql = "from SysCust t left join t.sysBusinesses b where (b.id is null or b.id = '') and (t.custType = 'E') and (t.privateUser.id is null or t.privateUser.id = '')";
+				
+				if (vo != null) {
+					//客户编号
+					if (!StringUtil.isNull(vo.getId())) {
+						if (StringUtil.isInteger(vo.getId())) {
+							hql += " and t.id = " + vo.getId();
+						} else {
+							hql += " and t.id = 0";
+						}
+					}
+					//客户名称 
+					if (!StringUtil.isNull(vo.getName())) {
+						hql += " and t.name like '%" + vo.getName() + "%'";
+					}
+					//邮编
+					if (!StringUtil.isNull(vo.getPostalCode())) {
+						hql += " and t.postalCode like '%" + vo.getPostalCode() + "%'";
+					}
+					//所属行业
+					if (!StringUtil.isNull(vo.getBaseIndustryId()) && StringUtil.isInteger(vo.getBaseIndustryId())) {
+						hql += " and t.baseIndustry.id = " + vo.getBaseIndustryId();
+					}
+					//客户类型
+					if (!StringUtil.isNull(vo.getBaseTypeId()) && StringUtil.isInteger(vo.getBaseTypeId())) {
+						hql += " and t.baseType.id = " + vo.getBaseTypeId();
+					}
+					//客户来源
+					if (!StringUtil.isNull(vo.getBaseSourceId()) && StringUtil.isInteger(vo.getBaseSourceId())) {
+						hql += " and t.baseSource.id = " + vo.getBaseSourceId();
+					}
+					//客户状态
+					if (!StringUtil.isNull(vo.getBaseStateId()) && StringUtil.isInteger(vo.getBaseStateId())) {
+						hql += " and t.baseState.id = " + vo.getBaseStateId();
+					}
+					//公司主页
+					if (!StringUtil.isNull(vo.getWebsite())) {
+						hql += " and t.website like '%" + vo.getWebsite() + "%'";
+					}
+					//详细地址
+					if (!StringUtil.isNull(vo.getAddress())) {
+						hql += " and t.address like '%" + vo.getAddress() + "%'";
+					}
+					//备注
+					if (!StringUtil.isNull(vo.getRemark())) {
+						hql += " and t.remark like '%" + vo.getRemark() + "%'";
+					}
+				}
+				
+				Query query = session.createQuery("select t " + hql);
+				query.setFirstResult(list.getStartNumber()).setMaxResults(list.getObjectsPerPage());
+				list.setList(HibernateUtil.parseToVos(query.list(), SysCustVO.class));
+				
+				query = session.createQuery("select count(*) " + hql);
+				int count = ((Number)query.list().iterator().next()).intValue();
+				list.setFullListSize(count);
+				query = null;
+				return list;
+			}
+		});
+		return resullt; 
+	}
+	
+	@Override
+	public PaginatedList findPrivate(final PaginatedList list, final SysCustVO vo, final SysUserVO sysUserVO) {
+		PaginatedList resullt = getHibernateTemplate().execute(new HibernateCallback<PaginatedList>() {
+
+			@Override
+			public PaginatedList doInHibernate(Session session)
+					throws HibernateException, SQLException {
+				String hql = "from SysCust t left join t.sysBusinesses b where (b.id is null or b.id = '') and (t.custType = 'E')";
+				if (sysUserVO != null && !StringUtil.isNull(sysUserVO.getId())) {
+					hql += " and t.privateUser.id = " + sysUserVO.getId();
+				} else {
+					hql += " and 1 = 2";
+				}
+				
+				if (vo != null) {
+					//客户编号
+					if (!StringUtil.isNull(vo.getId())) {
+						if (StringUtil.isInteger(vo.getId())) {
+							hql += " and t.id = " + vo.getId();
+						} else {
+							hql += " and t.id = 0";
+						}
+					}
+					//客户名称 
+					if (!StringUtil.isNull(vo.getName())) {
+						hql += " and t.name like '%" + vo.getName() + "%'";
+					}
+					//邮编
+					if (!StringUtil.isNull(vo.getPostalCode())) {
+						hql += " and t.postalCode like '%" + vo.getPostalCode() + "%'";
+					}
+					//所属行业
+					if (!StringUtil.isNull(vo.getBaseIndustryId()) && StringUtil.isInteger(vo.getBaseIndustryId())) {
+						hql += " and t.baseIndustry.id = " + vo.getBaseIndustryId();
+					}
+					//客户类型
+					if (!StringUtil.isNull(vo.getBaseTypeId()) && StringUtil.isInteger(vo.getBaseTypeId())) {
+						hql += " and t.baseType.id = " + vo.getBaseTypeId();
+					}
+					//客户来源
+					if (!StringUtil.isNull(vo.getBaseSourceId()) && StringUtil.isInteger(vo.getBaseSourceId())) {
+						hql += " and t.baseSource.id = " + vo.getBaseSourceId();
+					}
+					//客户状态
+					if (!StringUtil.isNull(vo.getBaseStateId()) && StringUtil.isInteger(vo.getBaseStateId())) {
+						hql += " and t.baseState.id = " + vo.getBaseStateId();
+					}
+					//公司主页
+					if (!StringUtil.isNull(vo.getWebsite())) {
+						hql += " and t.website like '%" + vo.getWebsite() + "%'";
+					}
+					//详细地址
+					if (!StringUtil.isNull(vo.getAddress())) {
+						hql += " and t.address like '%" + vo.getAddress() + "%'";
+					}
+					//备注
+					if (!StringUtil.isNull(vo.getRemark())) {
+						hql += " and t.remark like '%" + vo.getRemark() + "%'";
+					}
+				}
+				
+				Query query = session.createQuery("select t " + hql);
+				query.setFirstResult(list.getStartNumber()).setMaxResults(list.getObjectsPerPage());
+				list.setList(HibernateUtil.parseToVos(query.list(), SysCustVO.class));
+				
+				query = session.createQuery("select count(*) " + hql);
+				int count = ((Number)query.list().iterator().next()).intValue();
+				list.setFullListSize(count);
+				query = null;
+				return list;
+			}
+		});
+		return resullt; 
+	}
+	
+	@Override
+	public void toPrivate(Integer[] cbId, SysCustVO sysCustVO) {
+		try {
+			StringBuffer hql = new StringBuffer("update SysCust t set t.privateUser.id = ").append(sysCustVO.getId()).append(" where (1 = 2");
+			if (!SystemUtil.isNull(cbId)) {
+				for (Integer integer : cbId) {
+					hql.append(" or t.id = ").append(integer.intValue());
+				}
+			}
+			hql.append(")").append(" and t.custType = 'E'");
+			getHibernateTemplate().bulkUpdate(hql.toString());
+		} catch (DataAccessException e) {
+			log.error("", e);
+			throw e;
+		}
 	}
 }

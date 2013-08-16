@@ -405,7 +405,7 @@ function searchSubmit(o) {
 		if ($(this).attr('name') && $(this).attr('name').length > 0 && $(this).val() && $(this).val().length > 0) {
 			map[$(this).attr('name')] = $(this).val();
 		}
-	})
+	});
 	window.returnValue = map;
 	closeThisWindow(o);
 	return false;

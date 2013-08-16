@@ -3,6 +3,7 @@ package soy.web.service;
 import java.util.List;
 
 import soy.basic.vo.SysCustVO;
+import soy.basic.vo.SysUserVO;
 import soy.util.PaginatedList;
 
 public interface SysCustService {
@@ -21,4 +22,10 @@ public interface SysCustService {
 	public SysCustVO updateFeature(SysCustVO sysCustVO);
 	
 	public List<SysCustVO> findAll();
+
+	public PaginatedList findPublic(PaginatedList list, SysCustVO sysCustVO);
+
+	public PaginatedList findPrivate(PaginatedList list, SysCustVO sysCustVO, SysUserVO sysUserVO);
+
+	public void toPrivate(Integer[] cbId, SysCustVO sysCustVO);
 }

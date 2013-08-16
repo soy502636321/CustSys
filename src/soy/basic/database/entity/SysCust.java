@@ -25,6 +25,8 @@ public class SysCust implements java.io.Serializable {
 	private String website; // 网址
 	private String remark; // 备注
 	private String feature;// 特点
+	private String custType; // 客户类型 /开发/正常
+	private SysUser privateUser; // 开发人
 	private Set sysMaintains = new HashSet(0);
 	private Set sysBusinesses = new HashSet(0);
 	private Set sysContacts = new HashSet(0);
@@ -171,6 +173,22 @@ public class SysCust implements java.io.Serializable {
 
 	public void setFeature(String feature) {
 		this.feature = feature;
+	}
+
+	public String getCustType() {
+		return custType;
+	}
+
+	public void setCustType(String custType) {
+		this.custType = custType;
+	}
+
+	public SysUser getPrivateUser() {
+		return privateUser;
+	}
+
+	public void setPrivateUser(SysUser privateUser) {
+		this.privateUser = privateUser;
 	}
 
 }

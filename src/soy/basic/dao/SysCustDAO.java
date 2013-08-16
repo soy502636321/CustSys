@@ -3,6 +3,7 @@ package soy.basic.dao;
 import java.util.List;
 
 import soy.basic.vo.SysCustVO;
+import soy.basic.vo.SysUserVO;
 import soy.util.PaginatedList;
 
 /**
@@ -29,4 +30,10 @@ public interface SysCustDAO extends BaseDAO {
 	public List findByWebsite(Object website);
 
 	public List findByRemark(Object remark);
+
+	public PaginatedList findPublic(PaginatedList list, SysCustVO sysCustVO);
+
+	public PaginatedList findPrivate(PaginatedList list, SysCustVO sysCustVO, SysUserVO sysUserVO);
+
+	public void toPrivate(Integer[] cbId, SysCustVO sysCustVO);
 }

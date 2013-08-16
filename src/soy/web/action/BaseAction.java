@@ -25,7 +25,10 @@ import soy.basic.vo.BaseQualityVO;
 import soy.basic.vo.BaseSourceVO;
 import soy.basic.vo.BaseStateVO;
 import soy.basic.vo.BaseTypeVO;
+import soy.basic.vo.LoginUserVO;
+import soy.basic.vo.SysUserVO;
 import soy.util.ConfigUtil;
+import soy.util.GlobalUtil;
 import soy.util.OptionVO;
 import soy.util.StringUtil;
 import soy.util.SystemUtil;
@@ -392,4 +395,8 @@ public class BaseAction extends ActionSupport implements SessionAware,
 		this.baseMainService = baseMainService;
 	}
 
+	public SysUserVO getLoginSysUserVO() {
+		LoginUserVO loginUserVO = (LoginUserVO) getSession().get(GlobalUtil.LOGINUSER);
+		return new SysUserVO(loginUserVO.getUser());
+	}
 }

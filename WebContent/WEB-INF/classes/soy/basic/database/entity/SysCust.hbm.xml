@@ -40,6 +40,12 @@
         <property name="feature" type="java.lang.String">
         	<column name="FEATURE" length="500"></column>
         </property>
+        <property name="custType" type="java.lang.String">
+        	<column name="CUST_TYPE" length="100" />
+        </property>
+        <many-to-one name="privateUser" class="soy.basic.database.entity.SysUser" fetch="select">
+        	<column name="PRIVATE_USER_ID" />
+        </many-to-one>
         <set name="sysMaintains" inverse="true">
             <key>
                 <column name="CUST_ID" />

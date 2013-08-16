@@ -43,7 +43,7 @@
 		<!-- 全局变量,超时返回登录页面 -->
 		<global-results>
 			<result name="loginPage">/include/session.jsp</result>
-			<result name="error">/include/session.jsp</result>
+			<result name="error">/include/error.jsp</result>
 			<result name="invalid.token">/include/session.jsp</result>
 		</global-results>
 
@@ -148,6 +148,14 @@
 			<result name="businessQuery">/jsp/business/businessQueryForCust.jsp</result>
 			<result name="feature">/jsp/cust/feature.jsp</result>
 			<result name="search">/jsp/cust/custSearch.jsp</result>
+		</action>
+		<action name="privateSysCustAction" class="soy.web.action.PrivateSysCustAction">
+			<result name="query">/jsp/cust/custQuery_Private.jsp</result>
+			<result name="add">/jsp/cust/cust_Extend.jsp</result>
+		</action>
+		<action name="publicSysCustAction" class="soy.web.action.PublicSysCustAction">
+			<result name="query">/jsp/cust/custQuery_Public.jsp</result>
+			<result name="add">/jsp/cust/cust_Extend.jsp</result>
 		</action>
 		<action name="sysContactAction" class="soy.web.action.SysContactAction">
 			<result name="add">/jsp/contact/contact.jsp</result>

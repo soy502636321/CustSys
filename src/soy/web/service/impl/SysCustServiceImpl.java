@@ -17,6 +17,7 @@ import soy.basic.database.entity.BaseState;
 import soy.basic.database.entity.BaseType;
 import soy.basic.database.entity.SysCust;
 import soy.basic.vo.SysCustVO;
+import soy.basic.vo.SysUserVO;
 import soy.util.PaginatedList;
 import soy.util.StringUtil;
 import soy.util.SystemUtil;
@@ -48,6 +49,16 @@ public class SysCustServiceImpl implements SysCustService {
 		list.setList(sysCustVOs);
 		sysCustes = null;
 		return list;
+	}
+	
+	@Override
+	public PaginatedList findPublic(PaginatedList list, SysCustVO sysCustVO) {
+		return getSysCustDAO().findPublic(list, sysCustVO);
+	}
+	
+	@Override
+	public PaginatedList findPrivate(PaginatedList list, SysCustVO sysCustVO, SysUserVO sysUserVO) {
+		return getSysCustDAO().findPrivate(list, sysCustVO, sysUserVO);
 	}
 	
 	@Override
@@ -249,6 +260,11 @@ public class SysCustServiceImpl implements SysCustService {
 			}
 		}
 		return vo;
+	}
+	
+	@Override
+	public void toPrivate(Integer[] cbId, SysCustVO sysCustVO) {
+		getSysCustDAO().toPrivate(cbId, sysCustVO);
 	}
 
 	public SysCustDAO getSysCustDAO() {
