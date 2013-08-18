@@ -51,13 +51,12 @@
 				</tr>
 			</table>
 			
-			<hq:buttons function="14">
+			<hq:buttons function="106">
 				<hq:button name="添加客户" mode="all"></hq:button>
 				<hq:button name="修改客户" mode="single"></hq:button>
 				<hq:button name="联系方式" mode="single"></hq:button>
 				<hq:button name="维护记录" mode="single"></hq:button>
-				<hq:button name="业务管理" mode="single"></hq:button>
-				<hq:button name="客户特点" mode="single"></hq:button>
+				<hq:button name="获取到我的客户" mode="more" location="this"></hq:button>
 			</hq:buttons>
 		</s:form>
 	</body>

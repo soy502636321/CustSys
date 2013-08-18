@@ -35,5 +35,9 @@ public interface SysCustDAO extends BaseDAO {
 
 	public PaginatedList findPrivate(PaginatedList list, SysCustVO sysCustVO, SysUserVO sysUserVO);
 
-	public void toPrivate(Integer[] cbId, SysCustVO sysCustVO);
+	public void toPrivate(Integer[] cbId, SysUserVO loginSysUserVO);
+
+	public void toPublic(Integer[] cbId);
+	
+	public void setPublic(Integer[] cbId);
 }

@@ -16,6 +16,7 @@ import soy.basic.database.entity.BasePayment;
 import soy.basic.database.entity.BaseQuality;
 import soy.basic.database.entity.SysBusiness;
 import soy.basic.database.entity.SysCust;
+import soy.basic.database.entity.SysUser;
 import soy.util.ConfigUtil;
 import soy.util.StringUtil;
 import soy.util.SystemUtil;
@@ -31,6 +32,8 @@ public class SysBusinessVO {
 	private String basePaymentId;
 
 	private SysCust sysCust; // 客户外键
+	private SysUser privateUser; // 开发人
+	private String privateUserUsername; 
 	private String sysCustId; // 客户编号
 
 	private BaseDelivery baseDelivery; // 交付方式
@@ -67,7 +70,7 @@ public class SysBusinessVO {
 	private String complaintsId;
 	private String remark; // 备注
 	private String claim; // 要求
-	
+
 	private Double correspondsPrice; // 对应单价
 	private Double pageNumber; // 页码
 	private Double duty; // 税
@@ -524,5 +527,26 @@ public class SysBusinessVO {
 		this.productType = productType;
 	}
 
-	
+	public SysUser getPrivateUser() {
+		if (getSysCust() != null && privateUser == null) {
+			privateUser = getSysCust().getPrivateUser();
+		}
+		return privateUser;
+	}
+
+	public void setPrivateUser(SysUser privateUser) {
+		this.privateUser = privateUser;
+	}
+
+	public String getPrivateUserUsername() {
+		if (getPrivateUser() != null && privateUserUsername == null) {
+			privateUserUsername = getPrivateUser().getUsername();
+		}
+		return privateUserUsername;
+	}
+
+	public void setPrivateUserUsername(String privateUserUsername) {
+		this.privateUserUsername = privateUserUsername;
+	}
+
 }

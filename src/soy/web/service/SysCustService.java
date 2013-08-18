@@ -27,5 +27,10 @@ public interface SysCustService {
 
 	public PaginatedList findPrivate(PaginatedList list, SysCustVO sysCustVO, SysUserVO sysUserVO);
 
-	public void toPrivate(Integer[] cbId, SysCustVO sysCustVO);
+
+	public SysCustVO save(SysCustVO sysCustVO, SysUserVO loginSysUserVO);
+
+	public void toPrivate(Integer[] cbId, SysUserVO loginSysUserVO);
+
+	public void toPublic(Integer[] cbId);
 }

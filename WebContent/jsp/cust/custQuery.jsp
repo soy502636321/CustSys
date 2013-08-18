@@ -45,6 +45,7 @@
 							<display:column property="baseSourceName" title="客户来源"></display:column>
 							<display:column property="baseStateName" title="客户状态"></display:column>
 							<display:column property="website" title="公司主页"></display:column>
+							<display:column property="privateUserUsername" title="开发人"></display:column>
 							<display:column property="remark" title="备注"></display:column>
 						</display:table>
 					</td>

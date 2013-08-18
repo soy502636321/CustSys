@@ -180,6 +180,10 @@ public class SysBusinessDAOImpl extends HibernateDaoSupport implements SysBusine
 							hql += " and t.sysCust.id = -20";
 						}
 					}
+					if (!StringUtil.isNull(vo.getPrivateUserUsername())) {
+						hql += " and t.sysCust.privateUser.username like '%" + vo.getPrivateUserUsername() + "%'";
+					}
+					
 					//订单编号
 					if (!StringUtil.isNull(vo.getBusinessNo())) {
 						hql += " and t.businessNo like '%" + vo.getBusinessNo() + "%'";

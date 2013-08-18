@@ -52,12 +52,12 @@
 				</tr>
 			</table>
 			
-			<hq:buttons function="9002">
+			<hq:buttons function="100">
 				<hq:button name="添加客户" mode="all"></hq:button>
 				<hq:button name="修改客户" mode="single"></hq:button>
 				<hq:button name="联系方式" mode="single"></hq:button>
 				<hq:button name="维护记录" mode="single"></hq:button>
-				<hq:button name="放入公共客户" mode="more"></hq:button>
+				<hq:button name="放入公共客户" mode="more" location="this"></hq:button>
 			</hq:buttons>
 		</s:form>
 	</body>

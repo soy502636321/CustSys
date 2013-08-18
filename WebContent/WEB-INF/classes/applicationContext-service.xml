@@ -8,6 +8,7 @@
 	<bean id="sysUserService" class="soy.web.service.impl.SysUserServiceImpl">
 		<property name="sysUserDAO" ref="sysUserDAO" />
 		<property name="sysRoleDAO" ref="sysRoleDAO" />
+		<property name="sysCustDAO" ref="sysCustDAO" />
 		<property name="sysFunctionDAO" ref="sysFunctionDAO" />
 	</bean>
 	

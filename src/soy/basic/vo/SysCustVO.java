@@ -8,6 +8,7 @@ import soy.basic.database.entity.BaseSource;
 import soy.basic.database.entity.BaseState;
 import soy.basic.database.entity.BaseType;
 import soy.basic.database.entity.SysCust;
+import soy.basic.database.entity.SysUser;
 
 public class SysCustVO {
 	private static final Logger log = LoggerFactory.getLogger(SysCustVO.class);
@@ -37,6 +38,10 @@ public class SysCustVO {
 	private String website; // 网址
 	private String remark; // 备注
 	private String feature;// 特点
+
+	private String custType; // 客户类型 /开发/正常
+	private SysUser privateUser; // 开发人
+	private String privateUserUsername;
 
 	public SysCustVO() {
 	}
@@ -260,6 +265,36 @@ public class SysCustVO {
 
 	public void setFeature(String feature) {
 		this.feature = feature;
+	}
+
+	public String getCustType() {
+		return custType;
+	}
+
+	public void setCustType(String custType) {
+		this.custType = custType;
+	}
+
+	public SysUser getPrivateUser() {
+		if (getSysCust() != null && privateUser == null) {
+			privateUser = getSysCust().getPrivateUser();
+		}
+		return privateUser;
+	}
+
+	public void setPrivateUser(SysUser privateUser) {
+		this.privateUser = privateUser;
+	}
+
+	public String getPrivateUserUsername() {
+		if (getPrivateUser() != null && privateUserUsername == null) {
+			privateUserUsername = getPrivateUser().getUsername();
+		}
+		return privateUserUsername;
+	}
+
+	public void setPrivateUserUsername(String privateUserUsername) {
+		this.privateUserUsername = privateUserUsername;
 	}
 
 }

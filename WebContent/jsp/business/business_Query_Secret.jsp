@@ -9,12 +9,12 @@
 	</head>
 
 	<body>
-		<s:form action="sysBusinessAction" namespace="/sysBusiness">
+		<s:form action="secretSysBusinessAction" namespace="/sysBusiness">
 			<br>
 			<table>
 				<tr>
 					<td colspan="4">
-						<s:submit value="查  询" onclick="return openSearchDialog(this, 'sysBusinessAction!search', 500, 500);" action="sysBusinessAction!query"></s:submit>
+						<s:submit value="查  询" onclick="return openSearchDialog(this, 'secretSysBusinessAction!search', 500, 500);" action="secretSysBusinessAction!query"></s:submit>
 					</td>
 				</tr>
 				<tr>
@@ -26,12 +26,9 @@
 			<br>
 			<table style="width: 100%">
 				<tr>
-					<td></td>
-				</tr>
-				<tr>
 					<td>
 						<display:table name="list" class="simple"
-							requestURI="sysBusinessAction!query">
+							requestURI="secretSysBusinessAction!query">
 							<display:column property="id"
 								decorator="soy.common.displaytag.CheckBoxDecorator"
 								style="width:3%;"
@@ -48,17 +45,10 @@
 							<display:column property="id" title="订单品质"></display:column>
 							<display:column property="id" title="订单种类"></display:column>
 							<display:column property="quantity" title="数量"></display:column>
-							<display:column property="unitprice" title="单价"></display:column>
 							<display:column property="correspondsPrice" title="对应单价"></display:column>
 							<display:column property="pageNumber" title="页码"></display:column>
-							<display:column property="duty" title="税"></display:column>
-							<display:column property="cashBack" title="返现"></display:column>
 							<display:column property="rawMaterials" title="原材料"></display:column>
 							<display:column property="productType" title="产品类型"></display:column>
-							<display:column property="estimatedAmount" title="预估金额"></display:column>
-							<display:column property="actualAmount" title="实际金额"></display:column>
-							<display:column property="basePayment.paymentName" title="付款方式"></display:column>
-							<display:column property="invoice" title="开票"></display:column>
 							<display:column property="baseDelivery.deliveryName" title="交付方式"></display:column>
 							<display:column property="complaints" title="客户投诉"></display:column>
 							<display:column property="privateUserUsername" title="开发人"></display:column>
@@ -67,9 +57,7 @@
 					</td>
 				</tr>
 			</table>
-			<hq:buttons function="16">
-				<hq:button name="添加订单" mode="all"></hq:button>
-				<hq:button name="修改订单" mode="single"></hq:button>
+			<hq:buttons function="112">
 				<hq:button name="订单要求" mode="single"></hq:button>
 				<hq:button name="客户特点" mode="single"></hq:button>
 				<hq:button name="生产记录" mode="single"></hq:button>

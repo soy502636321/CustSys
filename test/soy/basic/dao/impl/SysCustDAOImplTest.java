@@ -7,8 +7,12 @@ import org.springframework.beans.factory.BeanFactory;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import soy.basic.dao.SysCustDAO;
+import soy.basic.dao.SysUserDAO;
+import soy.basic.database.entity.SysCust;
+import soy.basic.database.entity.SysUser;
 import soy.basic.vo.SysUserVO;
 import soy.util.PaginatedList;
+import soy.web.service.SysUserService;
 
 public class SysCustDAOImplTest {
 	public BeanFactory factory = new ClassPathXmlApplicationContext(
@@ -90,13 +94,13 @@ public class SysCustDAOImplTest {
 
 	@Test
 	public void testToPrivate() {
-		SysCustDAO sysCustDAO = (SysCustDAO) factory.getBean("sysCustDAO");
-		PaginatedList list = new PaginatedList(1);
-		SysUserVO sysUserVO = new SysUserVO();
-		sysUserVO.setId("1");
-		list = sysCustDAO.findPublic(list, null);
-		System.out.println("统计:" + list.getFullListSize());
-		System.out.println("集合:" + list.getList());
+//		SysCustDAO sysCustDAO = (SysCustDAO) factory.getBean("sysCustDAO");
+//		SysUserDAO sysUserDAO = (SysUserDAO) factory.getBean("sysUserDAO");
+//		SysUser sysUser = (SysUser) sysUserDAO.findById(3);
+//		sysUserDAO.delete(sysUser);
+		SysUserService sysUserService = (SysUserService) factory.getBean("sysUserService");
+		Integer[] ids = new Integer[] {3};
+		sysUserService.delete(ids);
 	}
 
 }

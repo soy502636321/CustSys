@@ -56,6 +56,14 @@
 				</tr>
 				<tr>
 					<td>
+						开发人
+					</td>
+					<td>
+						<s:textfield name="sysBusinessVO.privateUserUsername" />
+					</td>
+				</tr>
+				<tr>
+					<td>
 						开始交付时间
 					</td>
 					<td>

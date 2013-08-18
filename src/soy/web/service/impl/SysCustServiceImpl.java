@@ -127,6 +127,65 @@ public class SysCustServiceImpl implements SysCustService {
 		}
 		return vo;
 	}
+	
+	@Override
+	public SysCustVO save(SysCustVO sysCustVO, SysUserVO loginSysUserVO) {
+		setChange(true);
+		SysCustVO vo = null;
+		if (sysCustVO != null) {
+			try {
+				SysCust sysCust = new SysCust();
+				sysCust.setName(sysCustVO.getName());// 客户名称
+				sysCust.setPostalCode(sysCustVO.getPostalCode()); // 邮编
+				BaseIndustry baseIndustry = null;// 客户行业
+
+				if (StringUtil.isInteger(sysCustVO.getBaseIndustryId())) {
+					baseIndustry = (BaseIndustry) getBaseIndustryDAO()
+							.findById(
+									Integer.valueOf(sysCustVO
+											.getBaseIndustryId()));
+				}
+				sysCust.setBaseIndustry(baseIndustry);
+
+				BaseType baseType = null; // 客户类型
+				if (StringUtil.isInteger(sysCustVO.getBaseTypeId())) {
+					baseType = (BaseType) getBaseTypeDAO().findById(
+							Integer.valueOf(sysCustVO.getBaseTypeId()));
+				}
+				sysCust.setBaseType(baseType);
+
+				BaseSource baseSource = null;
+				if (StringUtil.isInteger(sysCustVO.getBaseSourceId())) {
+					baseSource = (BaseSource) getBaseSourceDAO().findById(
+							Integer.valueOf(sysCustVO.getBaseSourceId())); // 客户来源
+				}
+				sysCust.setBaseSource(baseSource);
+
+				BaseState baseState = null;
+				if (StringUtil.isInteger(sysCustVO.getBaseStateId())) {
+					baseState = (BaseState) getBaseStateDAO().findById(
+							Integer.valueOf(sysCustVO.getBaseStateId())); // 客户状态
+				}
+				sysCust.setBaseState(baseState);
+				sysCust.setCustType("E"); //开发客户类型
+				if (loginSysUserVO != null) {
+					sysCust.setPrivateUser(loginSysUserVO.getSysUser()); //开发人
+				}
+
+				sysCust.setWebsite(sysCustVO.getWebsite()); // 公司主页
+				sysCust.setAddress(sysCustVO.getAddress()); // 详细地址
+				sysCust.setRemark(sysCustVO.getRemark()); // 备注
+
+				getSysCustDAO().save(sysCust);
+
+				vo = new SysCustVO(sysCust);
+			} catch (Exception e) {
+				vo = null;
+				e.printStackTrace();
+			}
+		}
+		return vo;
+	}
 
 	@Override
 	public SysCustVO findById(Integer id) {
@@ -263,8 +322,13 @@ public class SysCustServiceImpl implements SysCustService {
 	}
 	
 	@Override
-	public void toPrivate(Integer[] cbId, SysCustVO sysCustVO) {
-		getSysCustDAO().toPrivate(cbId, sysCustVO);
+	public void toPrivate(Integer[] cbId, SysUserVO loginSysUserVO) {
+		getSysCustDAO().toPrivate(cbId, loginSysUserVO);
+	}
+	
+	@Override
+	public void toPublic(Integer[] cbId) {
+		getSysCustDAO().toPublic(cbId);
 	}
 
 	public SysCustDAO getSysCustDAO() {

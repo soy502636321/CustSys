@@ -142,7 +142,7 @@ public class SysCustDAOImpl extends HibernateDaoSupport implements SysCustDAO {
 			@Override
 			public PaginatedList doInHibernate(Session session)
 					throws HibernateException, SQLException {
-				String hql = "from SysCust t inner join t.sysBusinesses b where t.id != -1";
+				String hql = "from SysCust t left join t.sysBusinesses b where (b.id is not null or b.id != '' or t.custType is null or t.custType = '')";
 				
 				if (vo != null) {
 					//客户编号
@@ -191,11 +191,11 @@ public class SysCustDAOImpl extends HibernateDaoSupport implements SysCustDAO {
 					}
 				}
 				
-				Query query = session.createQuery("select t " + hql);
+				Query query = session.createQuery("select DISTINCT t " + hql);
 				query.setFirstResult(list.getStartNumber()).setMaxResults(list.getObjectsPerPage());
 				list.setList(query.list());
 				
-				query = session.createQuery("select count(*) " + hql);
+				query = session.createQuery("select count(DISTINCT t) " + hql);
 				int count = ((Number)query.list().iterator().next()).intValue();
 				list.setFullListSize(count);
 				query = null;
@@ -351,15 +351,49 @@ public class SysCustDAOImpl extends HibernateDaoSupport implements SysCustDAO {
 	}
 	
 	@Override
-	public void toPrivate(Integer[] cbId, SysCustVO sysCustVO) {
+	public void toPrivate(Integer[] cbId, SysUserVO loginSysUserVO) {
 		try {
-			StringBuffer hql = new StringBuffer("update SysCust t set t.privateUser.id = ").append(sysCustVO.getId()).append(" where (1 = 2");
+			StringBuffer hql = new StringBuffer("update SysCust t set t.privateUser.id = ").append(loginSysUserVO.getId()).append(" where (1 = 2");
 			if (!SystemUtil.isNull(cbId)) {
 				for (Integer integer : cbId) {
 					hql.append(" or t.id = ").append(integer.intValue());
 				}
 			}
 			hql.append(")").append(" and t.custType = 'E'");
+			getHibernateTemplate().bulkUpdate(hql.toString());
+		} catch (DataAccessException e) {
+			log.error("", e);
+			throw e;
+		}
+	}
+	
+	@Override
+	public void toPublic(Integer[] cbId) {
+		try {
+			StringBuffer hql = new StringBuffer("update SysCust t set t.privateUser = null where (1 = 2");
+			if (!SystemUtil.isNull(cbId)) {
+				for (Integer integer : cbId) {
+					hql.append(" or t.id = ").append(integer.intValue());
+				}
+			}
+			hql.append(")").append(" and t.custType = 'E'");
+			getHibernateTemplate().bulkUpdate(hql.toString());
+		} catch (DataAccessException e) {
+			log.error("", e);
+			throw e;
+		}		
+	}
+	
+	@Override
+	public void setPublic(Integer[] cbId) {
+		try {
+			StringBuffer hql = new StringBuffer("update SysCust t set t.privateUser = null where (1 = 2");
+			if (!SystemUtil.isNull(cbId)) {
+				for (Integer integer : cbId) {
+					hql.append(" or t.privateUser.id = ").append(integer.intValue());
+				}
+			}
+			hql.append(")");;
 			getHibernateTemplate().bulkUpdate(hql.toString());
 		} catch (DataAccessException e) {
 			log.error("", e);

@@ -6,6 +6,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import soy.basic.dao.SysCustDAO;
 import soy.basic.dao.SysFunctionDAO;
 import soy.basic.dao.SysRoleDAO;
 import soy.basic.dao.SysUserDAO;
@@ -27,6 +28,7 @@ public class SysUserServiceImpl implements SysUserService {
 	private SysUserDAO sysUserDAO;
 	private SysRoleDAO sysRoleDAO;
 	private SysFunctionDAO sysFunctionDAO;
+	private SysCustDAO sysCustDAO;
 
 	@Override
 	public SysUser login(String username) {
@@ -124,6 +126,7 @@ public class SysUserServiceImpl implements SysUserService {
 	public int delete(Integer[] ids) {
 		int size = 0;
 		if (!SystemUtil.isNull(ids)) {
+			getSysCustDAO().setPublic(ids);
 			for (Integer id : ids) {
 				SysUser SysUser = (SysUser) getSysUserDAO().findById(id);
 				if (SysUser != null) {
@@ -162,6 +165,14 @@ public class SysUserServiceImpl implements SysUserService {
 
 	public void setSysRoleDAO(SysRoleDAO sysRoleDAO) {
 		this.sysRoleDAO = sysRoleDAO;
+	}
+
+	public SysCustDAO getSysCustDAO() {
+		return sysCustDAO;
+	}
+
+	public void setSysCustDAO(SysCustDAO sysCustDAO) {
+		this.sysCustDAO = sysCustDAO;
 	}
 
 	

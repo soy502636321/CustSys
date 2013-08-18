@@ -151,11 +151,17 @@
 		</action>
 		<action name="privateSysCustAction" class="soy.web.action.PrivateSysCustAction">
 			<result name="query">/jsp/cust/custQuery_Private.jsp</result>
-			<result name="add">/jsp/cust/cust_Extend.jsp</result>
+			<result name="add">/jsp/cust/cust_Private.jsp</result>
+			<result name="edit">/jsp/cust/cust_Private.jsp</result>
+			<result name="contactQuery">/jsp/contact/contactQuery.jsp</result>
+			<result name="maintainQuery">/jsp/maintain/maintainQueryForCust.jsp</result>
 		</action>
 		<action name="publicSysCustAction" class="soy.web.action.PublicSysCustAction">
 			<result name="query">/jsp/cust/custQuery_Public.jsp</result>
-			<result name="add">/jsp/cust/cust_Extend.jsp</result>
+			<result name="add">/jsp/cust/cust_Public.jsp</result>
+			<result name="edit">/jsp/cust/cust_Public.jsp</result>
+			<result name="contactQuery">/jsp/contact/contactQuery.jsp</result>
+			<result name="maintainQuery">/jsp/maintain/maintainQueryForCust.jsp</result>
 		</action>
 		<action name="sysContactAction" class="soy.web.action.SysContactAction">
 			<result name="add">/jsp/contact/contact.jsp</result>
@@ -170,6 +176,13 @@
 			<result name="add">/jsp/business/business.jsp</result>
 			<result name="query">/jsp/business/businessQuery.jsp</result>
 			<result name="edit">/jsp/business/business.jsp</result>
+			<result name="claim">/jsp/business/claim.jsp</result>
+			<result name="feature">/jsp/business/feature.jsp</result>
+			<result name="records">/jsp/record/recordQuery.jsp</result>
+			<result name="search">/jsp/business/businessSearch.jsp</result>
+		</action>
+		<action name="secretSysBusinessAction" class="soy.web.action.SecretSysBusinessAction">
+			<result name="query">/jsp/business/business_Query_Secret.jsp</result>
 			<result name="claim">/jsp/business/claim.jsp</result>
 			<result name="feature">/jsp/business/feature.jsp</result>
 			<result name="records">/jsp/record/recordQuery.jsp</result>
