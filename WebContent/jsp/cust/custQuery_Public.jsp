@@ -51,7 +51,7 @@
 				</tr>
 			</table>
 			
-			<hq:buttons function="106">
+			<hq:buttons function="9003">
 				<hq:button name="添加客户" mode="all"></hq:button>
 				<hq:button name="修改客户" mode="single"></hq:button>
 				<hq:button name="联系方式" mode="single"></hq:button>

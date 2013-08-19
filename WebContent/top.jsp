@@ -1,21 +1,21 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib uri="/WEB-INF/struts-tags.tld" prefix="s"%>
-<jsp:directive.page import="soy.util.DateUtil"/>
+<jsp:directive.page import="soy.util.DateUtil" />
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
-  <head>
-    <title>My JSP 'top.jsp' starting page</title>
-    
-	<meta http-equiv="pragma" content="no-cache">
-	<meta http-equiv="cache-control" content="no-cache">
-	<meta http-equiv="expires" content="0">    
-	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
-	<meta http-equiv="description" content="This is my page">
-	<!--
+	<head>
+		<title>My JSP 'top.jsp' starting page</title>
+
+		<meta http-equiv="pragma" content="no-cache">
+		<meta http-equiv="cache-control" content="no-cache">
+		<meta http-equiv="expires" content="0">
+		<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+		<meta http-equiv="description" content="This is my page">
+		<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
-	
-<style type="text/css">
+
+		<style type="text/css">
 <!--
 body {
 	margin-left: 0px;
@@ -23,6 +23,7 @@ body {
 	margin-right: 0px;
 	margin-bottom: 0px;
 }
+
 .STYLE1 {
 	color: #ffffff;
 	font-size: 12px;
@@ -30,75 +31,102 @@ body {
 -->
 </style>
 
-  </head>
-  
-<body>
-	<table width="100%" border="0" cellspacing="0" cellpadding="0" style="table-layout:fixed; background: #3c7fb5;" >
-		<tr>
-    		<td height="9" style="line-height:9px;">
-				<table width="97" height="9" border="0" cellspacing="0" cellpadding="0"></table>
-   	 		</td>
-  		</tr>
-	  	<tr>
-	    	<td height="47">
-	    		<table width="100%" border="0" cellspacing="0" cellpadding="0">
-	      			<tr>
-	        			<td width="38" height="47" >&nbsp;</td>
-	        			<td width="59">
-	        				<table width="100%" border="0" cellspacing="0" cellpadding="0">
-				          		<tr>
-				            		<td height="29" >&nbsp;</td>
-				          		</tr>
-				          		<tr>
-				            		<td height="18" >
-				            			<table width="100%" border="0" cellspacing="0" cellpadding="0" style="table-layout:fixed;">
-				              				<tr>
-				                				<td >&nbsp;</td>
-				               			 		<td ><span class="STYLE1">${userName}</span></td>
-				              				</tr>
-				            			</table>
-				            		</td>
-				          		</tr>
-				        	</table>
-	        			</td>
-				        <td width="155">&nbsp;</td>
-				        <td>
-				        	<table width="100%" border="0" cellspacing="0" cellpadding="0">
-				          		<tr>
-				            		<td height="23" valign="bottom">
-				            			
-				            		</td>
-				          		</tr>
-				        	</table>
-				        </td>
-				        <td width="200" >
-				        	<table width="100%" border="0" cellspacing="0" cellpadding="0">
-				          		<tr>
-				            		<td width="11%" height="23">&nbsp;</td>
-				            		<td width="89%" valign="bottom"><span class="STYLE1">日期：<%=DateUtil.getDateAndWeek()%></span></td>
-				          		</tr>
-				        	</table>
-				        </td>
-					</tr>
-			   	</table>
-  			</td>
-  		</tr>
- 		<tr>
-    		<td height="5" style="line-height:5px;">
-    			<table width="100%" border="0" cellspacing="0" cellpadding="0">
-      				<tr>
-        				<td width="180"  style="line-height:5px;">&nbsp;</td>
-       			 		<td>&nbsp;</td>
-      				</tr>
-    			</table>
-    		</td>
-  		</tr>
-	</table>
+	</head>
 
-	<map name="Map" id="Map">
-		<area shape="rect" coords="3,2,99,20" href="#11" />
-		<area shape="rect" coords="109,1,156,23" href="<%=request.getContextPath()+"/login.jsp"%>" target="_top"/>
-	</map>
-	
-</body>
+	<body>
+		<table width="100%" border="0" cellspacing="0" cellpadding="0"
+			style="table-layout: fixed; background: #3c7fb5;">
+			<tr>
+				<td height="9" style="line-height: 9px;">
+					<table width="97" height="9" border="0" cellspacing="0"
+						cellpadding="0"></table>
+				</td>
+			</tr>
+			<tr>
+				<td height="47">
+					<table width="100%" border="0" cellspacing="0" cellpadding="0">
+						<tr>
+							<td width="38" height="47">
+								&nbsp;
+							</td>
+							<td width="59">
+								<table width="100%" border="0" cellspacing="0" cellpadding="0">
+									<tr>
+										<td height="29">
+											&nbsp;
+										</td>
+									</tr>
+									<tr>
+										<td height="18">
+											<table width="100%" border="0" cellspacing="0"
+												cellpadding="0" style="table-layout: fixed;">
+												<tr>
+													<td>
+														&nbsp;
+													</td>
+													<td>
+														<span class="STYLE1">${userName}</span>
+													</td>
+												</tr>
+											</table>
+										</td>
+									</tr>
+								</table>
+							</td>
+							<td width="155">
+								&nbsp;
+							</td>
+							<td>
+								<table width="100%" border="0" cellspacing="0" cellpadding="0">
+									<tr>
+										<td height="23" valign="bottom">
+											<button onclick="exit()">退出</button>
+										</td>
+									</tr>
+								</table>
+							</td>
+							<td width="200">
+								<table width="100%" border="0" cellspacing="0" cellpadding="0">
+									<tr>
+										<td width="11%" height="23">
+											&nbsp;
+										</td>
+										<td width="89%" valign="bottom">
+											<span class="STYLE1">日期：<%=DateUtil.getDateAndWeek()%></span>
+										</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td height="5" style="line-height: 5px;">
+					<table width="100%" border="0" cellspacing="0" cellpadding="0">
+						<tr>
+							<td width="180" style="line-height: 5px;">
+								&nbsp;
+							</td>
+							<td>
+								&nbsp;
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+
+		<map name="Map" id="Map">
+			<area shape="rect" coords="3,2,99,20" href="#11" />
+			<area shape="rect" coords="109,1,156,23"
+				href="<%=request.getContextPath()+"/login.jsp"%>" target="_top" />
+		</map>
+
+	</body>
+	<script type="text/javascript">
+		function exit() {
+			window.parent.location = '<%= request.getContextPath()+"/login.jsp"%>';
+		}
+	</script>
 </html>

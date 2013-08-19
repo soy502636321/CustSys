@@ -35,7 +35,7 @@ body {
     	<iframe name="I2" height="100%" width="177" border="0" frameborder="0" src="left.jsp">
 		浏览器不支持嵌入式框架，或被配置为不显示嵌入式框架。</iframe>
 	</td>
-    <td><iframe name="I1" height="100%" width="100%" border="0" frameborder="0" src="sysCust/sysCustAction!query">
+    <td><iframe name="I1" height="100%" width="100%" border="0" frameborder="0">
 		浏览器不支持嵌入式框架，或被配置为不显示嵌入式框架。</iframe></td>
     <td background="images/main_42.gif" style="width:3px;">&nbsp;</td>
   </tr>

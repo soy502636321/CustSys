@@ -1,5 +1,5 @@
 <jsp:directive.include file="/include/mainMenu.jsp" />
-<%@ page language="java" pageEncoding="UTF-8"%>
+<%@ page language="java" pageEncoding="UTF-8" %>
 <html>
 	<head>
 		<title></title>
@@ -57,7 +57,7 @@
 					</td>
 				</tr>
 			</table>
-			<hq:buttons function="112">
+			<hq:buttons function="9014">
 				<hq:button name="订单要求" mode="single"></hq:button>
 				<hq:button name="客户特点" mode="single"></hq:button>
 				<hq:button name="生产记录" mode="single"></hq:button>
