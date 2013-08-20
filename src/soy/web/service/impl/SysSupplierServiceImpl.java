@@ -12,10 +12,12 @@ import org.slf4j.LoggerFactory;
 import soy.basic.dao.BaseClassDAO;
 import soy.basic.dao.BaseMainDAO;
 import soy.basic.dao.BaseQualityDAO;
+import soy.basic.dao.BaseSupplyDAO;
 import soy.basic.dao.SysSupplierDAO;
 import soy.basic.database.entity.BaseClass;
 import soy.basic.database.entity.BaseMain;
 import soy.basic.database.entity.BaseQuality;
+import soy.basic.database.entity.BaseSupply;
 import soy.basic.database.entity.SysSupplier;
 import soy.basic.vo.BaseClassVO;
 import soy.basic.vo.SysSupplierVO;
@@ -36,6 +38,7 @@ public class SysSupplierServiceImpl implements SysSupplierService {
 	private BaseMainDAO baseMainDAO;
 	private BaseClassDAO baseClassDAO;
 	private BaseQualityDAO baseQualityDAO;
+	private BaseSupplyDAO baseSupplyDAO;
 
 	@Override
 	public PaginatedList find(PaginatedList list, SysSupplierVO sysSupplierVO) {
@@ -63,14 +66,10 @@ public class SysSupplierServiceImpl implements SysSupplierService {
 				sysSupplier.setQq(sysSupplierVO.getQq()); // QQ
 				sysSupplier.setEmail(sysSupplierVO.getEmail()); // 邮箱
 
-				// 订单品质
-				List<BaseQuality> baseQualities = getBaseQualityDAO()
-						.findByIds(sysSupplierVO.getSupplierQualityId());
-				System.out.println("B:" + baseQualities);
-				Set<BaseQuality> supplierQualities = new HashSet<BaseQuality>();
-				supplierQualities.addAll(baseQualities);
-				System.out.println(Arrays.toString(sysSupplierVO.getSupplierQualityId()));
-				System.out.println("品质集合:" + supplierQualities.size());
+				// 供应质量
+				List<BaseSupply> baseSupplies = getBaseSupplyDAO().findByIds(sysSupplierVO.getSupplierQualityId());
+				Set<BaseSupply> supplierQualities = new HashSet<BaseSupply>();
+				supplierQualities.addAll(baseSupplies);
 				sysSupplier.setSupplierQualities(supplierQualities);
 
 				// 订单种类
@@ -180,10 +179,15 @@ public class SysSupplierServiceImpl implements SysSupplierService {
 					sysSupplier.setEmail(sysSupplierVO.getEmail()); // 邮箱
 
 					// 订单品质
-					List<BaseQuality> baseQualities = getBaseQualityDAO()
-							.findByIds(sysSupplierVO.getSupplierQualityId());
-					Set<BaseQuality> supplierQualities = new HashSet<BaseQuality>();
-					supplierQualities.addAll(baseQualities);
+//					List<BaseQuality> baseQualities = getBaseQualityDAO()
+//							.findByIds(sysSupplierVO.getSupplierQualityId());
+//					Set<BaseQuality> supplierQualities = new HashSet<BaseQuality>();
+//					supplierQualities.addAll(baseQualities);
+//					sysSupplier.setSupplierQualities(supplierQualities);
+					//供应质量
+					List<BaseSupply> baseSupplies = getBaseSupplyDAO().findByIds(sysSupplierVO.getSupplierQualityId());
+					Set<BaseSupply> supplierQualities = new HashSet<BaseSupply>();
+					supplierQualities.addAll(baseSupplies);
 					sysSupplier.setSupplierQualities(supplierQualities);
 
 					// 订单种类
@@ -273,5 +277,15 @@ public class SysSupplierServiceImpl implements SysSupplierService {
 	public void setBaseQualityDAO(BaseQualityDAO baseQualityDAO) {
 		this.baseQualityDAO = baseQualityDAO;
 	}
+
+	public BaseSupplyDAO getBaseSupplyDAO() {
+		return baseSupplyDAO;
+	}
+
+	public void setBaseSupplyDAO(BaseSupplyDAO baseSupplyDAO) {
+		this.baseSupplyDAO = baseSupplyDAO;
+	}
+	
+	
 
 }

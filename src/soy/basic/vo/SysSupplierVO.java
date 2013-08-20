@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import soy.basic.database.entity.BaseClass;
 import soy.basic.database.entity.BaseMain;
 import soy.basic.database.entity.BaseQuality;
+import soy.basic.database.entity.BaseSupply;
 import soy.basic.database.entity.SysSupplier;
 import soy.util.ConfigUtil;
 import soy.util.SystemUtil;
@@ -256,7 +257,7 @@ public class SysSupplierVO {
 				&& !SystemUtil.isNull(getSysSupplier().getSupplierQualities())) {
 			supplierQualities = new HashSet<BaseQualityVO>();
 			for (Object object : getSysSupplier().getSupplierQualities()) {
-				supplierQualities.add(new BaseQualityVO((BaseQuality) object));
+				supplierQualities.add(new BaseSupplyVO((BaseSupply) object));
 			}
 		} 
 		return supplierQualities;

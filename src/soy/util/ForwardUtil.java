@@ -36,8 +36,9 @@ public class ForwardUtil {
 	public final static String FORWARD_EDIT_FUNCTION_TREE_PAGE = "editFunctionTree";
 	public final static String FORWARD_EDIT_FUNCTION_ZTREE_PAGE = "editFunctionZTree";
 	public final static String FORWARD_EDIT_ORGAN_PAGE = "editOrganzation";
-//	public final static String FORWARD_COPY_SECTION_PAGE = "copySection";
 
 	public static final String FORWARD_SEARCH_PAGE = "search";
+
+	public static final String FORWARD_SHOW_PAGE = "show";
 
 }

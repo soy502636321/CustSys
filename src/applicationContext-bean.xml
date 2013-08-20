@@ -82,4 +82,8 @@
 	<bean id="baseMainDAO" class="soy.basic.dao.impl.BaseMainDAOImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
+	
+	<bean id="baseSupplyDAO" class="soy.basic.dao.impl.BaseSupplyDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
 </beans>

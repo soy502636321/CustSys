@@ -124,7 +124,7 @@ public class SysSupplierDAOImpl extends HibernateDaoSupport implements
 				@Override
 				public PaginatedList doInHibernate(Session session)
 						throws HibernateException, SQLException {
-					StringBuffer hql = new StringBuffer("from SysSupplier as model left join fetch model.supplierClasses as cl left join fetch model.supplierQualities as qu where 1 = 1");
+					StringBuffer hql = new StringBuffer("from SysSupplier as model left join model.supplierClasses as cl left join model.supplierQualities as qu where 1 = 1");
 					if (vo != null) {
 						//
 						if (!StringUtil.isNull(vo.getId())) {
@@ -209,12 +209,12 @@ public class SysSupplierDAOImpl extends HibernateDaoSupport implements
 					
 					System.out.println(hql.toString());
 					
-					Query query = session.createQuery(hql.toString());
+					Query query = session.createQuery("select model " + hql.toString());
 					query.setFirstResult(list.getStartNumber());
 					query.setMaxResults(list.getObjectsPerPage());
 					list.setList(query.list());
 					
-					query = session.createQuery("select count(*) " + hql.toString().replaceAll(" fetch", ""));
+					query = session.createQuery("select count(*) " + hql.toString());
 					int count = ((Number)query.list().iterator().next()).intValue();
 					list.setFullListSize(count);
 					query = null;

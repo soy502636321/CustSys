@@ -35,6 +35,11 @@ public class SysSupplierAction extends BaseAction {
 		setList(list);
 		return ForwardUtil.FORWARD_QUERY_PAGE;
 	}
+	
+	public String search() {
+		log.debug("");
+		return ForwardUtil.FORWARD_SEARCH_PAGE;
+	}
 
 	public String add() {
 		log.debug("");
@@ -96,6 +101,21 @@ public class SysSupplierAction extends BaseAction {
 			}
 		}
 		return ForwardUtil.FORWARD_EDIT_PAGE;
+	}
+	
+	public String show() {
+		log.debug("");
+		if (!SystemUtil.isNull(getCbId())) {
+			SysSupplierVO sysSupplierVO = getSysSupplierService().findById(getCbId()[0]);
+			if (sysSupplierVO == null) {
+				addActionError("未能找到该供应商!");
+			} else {
+				setSysSupplierVO(sysSupplierVO);
+			}
+		} else {
+			addActionError("请先选择供应商记录!");
+		}
+		return ForwardUtil.FORWARD_SHOW_PAGE;
 	}
 	
 	public String delete() {

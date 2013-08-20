@@ -24,6 +24,7 @@ import soy.basic.vo.BasePaymentVO;
 import soy.basic.vo.BaseQualityVO;
 import soy.basic.vo.BaseSourceVO;
 import soy.basic.vo.BaseStateVO;
+import soy.basic.vo.BaseSupplyVO;
 import soy.basic.vo.BaseTypeVO;
 import soy.basic.vo.LoginUserVO;
 import soy.basic.vo.SysUserVO;
@@ -41,6 +42,7 @@ import soy.web.service.BasePaymentService;
 import soy.web.service.BaseQualityService;
 import soy.web.service.BaseSourceService;
 import soy.web.service.BaseStateService;
+import soy.web.service.BaseSupplyService;
 import soy.web.service.BaseTypeService;
 import soy.web.service.SysCustService;
 import soy.web.service.SysMaintainService;
@@ -78,6 +80,9 @@ public class BaseAction extends ActionSupport implements SessionAware,
 
 	private String allSysCustIdOfString;
 	private SysCustService sysCustService;
+
+	private List<BaseSupplyVO> baseSupplyVOs; // 供应质量
+	private BaseSupplyService baseSupplyService;
 
 	private List<BaseQualityVO> baseQualityVOs; // 订单品质/
 	private BaseQualityService baseQualityService;
@@ -396,7 +401,31 @@ public class BaseAction extends ActionSupport implements SessionAware,
 	}
 
 	public SysUserVO getLoginSysUserVO() {
-		LoginUserVO loginUserVO = (LoginUserVO) getSession().get(GlobalUtil.LOGINUSER);
+		LoginUserVO loginUserVO = (LoginUserVO) getSession().get(
+				GlobalUtil.LOGINUSER);
 		return new SysUserVO(loginUserVO.getUser());
 	}
+
+	public List<BaseSupplyVO> getBaseSupplyVOs() {
+		if (SystemUtil.isNull(baseSupplyVOs)) {
+			System.out.println("进入");
+			baseSupplyVOs = new ArrayList<BaseSupplyVO>();
+			baseSupplyVOs.addAll(getBaseSupplyService().findAll());
+		}
+		System.out.println("统计：" + baseSupplyVOs);
+		return baseSupplyVOs;
+	}
+
+	public void setBaseSupplyVOs(List<BaseSupplyVO> baseSupplyVOs) {
+		this.baseSupplyVOs = baseSupplyVOs;
+	}
+
+	public BaseSupplyService getBaseSupplyService() {
+		return baseSupplyService;
+	}
+
+	public void setBaseSupplyService(BaseSupplyService baseSupplyService) {
+		this.baseSupplyService = baseSupplyService;
+	}
+
 }

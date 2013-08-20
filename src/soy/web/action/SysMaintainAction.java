@@ -27,6 +27,11 @@ public class SysMaintainAction extends BaseAction {
 		setList(list);
 		return ForwardUtil.FORWARD_QUERY_PAGE;
 	}
+	
+	public String search() {
+		log.debug("");
+		return ForwardUtil.FORWARD_SEARCH_PAGE;
+	}
 
 	public String add() {
 		log.debug("跳转到增加维护的主界面");

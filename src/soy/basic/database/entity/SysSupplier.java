@@ -5,10 +5,11 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
+ * 供应商实体类
  * @author XiaoLiang·Hu
- * 
  */
 public class SysSupplier implements Serializable {
+	
 	private Integer id;
 	private String name;
 	private String gender;

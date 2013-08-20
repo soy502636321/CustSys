@@ -79,5 +79,10 @@
 	
 	<bean id="sysSupplierAction" class="soy.web.action.SysSupplierAction">
 		<property name="sysSupplierService" ref="sysSupplierService" />
+		<property name="baseSupplyService" ref="baseSupplyService" />
+	</bean>
+	
+	<bean id="baseSupplyAction" class="soy.web.action.BaseSupplyAction">
+		<property name="baseSupplyService" ref="baseSupplyService" />
 	</bean>
 </beans>

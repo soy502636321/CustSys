@@ -13,71 +13,8 @@
 			<br>
 			<table>
 				<tr>
-					<td>
-						维护编号:
-					</td>
-					<td>
-						<s:textfield name="sysMaintainVO.id"></s:textfield>
-					</td>
-					<td>
-						客户编号:
-					</td>
-					<td>
-						<s:textfield name="sysMaintainVO.sysCustId"></s:textfield>
-					</td>
-					<td>
-						开始维护时间:
-					</td>
-					<td>
-						<s:textfield cssClass="calendar" name="sysMaintainVO.maintainTimeStart" />
-					</td>
-					<td>
-						结束维护时间:
-					</td>
-					<td>
-						<s:textfield cssClass="calendar" name="sysMaintainVO.maintainTimeEnd" />
-					</td>
-					<td>
-						联系人名称:
-					</td>
-					<td>
-						<s:textfield name="sysMaintainVO.name"></s:textfield>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						维护类型:
-					</td>
-					<td>
-						<s:select list="baseMaintaintypeVOs" listKey="id"
-							listValue="maintaintypeName"
-							name="sysMaintainVO.baseMaintaintypeId">
-						</s:select>
-					</td>
-					<td>
-						活动描述:
-					</td>
-					<td>
-						<s:textarea name="sysMaintainVO.activeDesc"></s:textarea>
-					</td>
-					<td>
-						维护结果:
-					</td>
-					<td>
-						<s:textarea name="sysMaintainVO.result"></s:textarea>
-					</td>
-					<td>
-						备注:
-					</td>
-					<td colspan="3">
-						<s:textarea name="sysMaintainVO.remark"></s:textarea>
-					</td>
-				</tr>
-				<tr>
 					<td colspan="4">
-						<s:submit value="查  询" action="sysMaintainAction!query"></s:submit>
-						&nbsp;&nbsp;&nbsp;
-						<s:reset value="重  置"></s:reset>
+						<s:submit value="查  询" onclick="return openSearchDialog(this, 'sysMaintainAction!search', 500, 400);" action="sysMaintainAction!query" />
 					</td>
 				</tr>
 				<tr>

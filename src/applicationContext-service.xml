@@ -93,9 +93,14 @@
 		<property name="baseMainDAO" ref="baseMainDAO" />
 		<property name="baseClassDAO" ref="baseClassDAO" />
 		<property name="baseQualityDAO" ref="baseQualityDAO" />
+		<property name="baseSupplyDAO" ref="baseSupplyDAO" />
 	</bean>
 	
 	<bean id="baseMainService" class="soy.web.service.impl.BaseMainServiceImpl">
 		<property name="baseMainDAO" ref="baseMainDAO" />
+	</bean>
+	
+	<bean id="baseSupplyService" class="soy.web.service.impl.BaseSupplyServiceImpl">
+		<property name="baseSupplyDAO" ref="baseSupplyDAO" />
 	</bean>
 </beans>

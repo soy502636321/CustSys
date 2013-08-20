@@ -135,6 +135,12 @@
 			<result name="edit">/jsp/system/production/production.jsp</result>
 			<result name="query">/jsp/system/production/productionQuery.jsp</result>
 		</action>
+		<action name="baseSupplyAction" class="soy.web.action.BaseSupplyAction">
+			<result name="query">/jsp/system/supply/BaseSupply_Query.jsp</result>
+			<result name="add">/jsp/system/supply/BaseSupply_Add.jsp</result>
+			<result name="edit">/jsp/system/supply/BaseSupply_Edit.jsp</result>
+			<result name="show">/jsp/system/supply/BaseSupply_Show.jsp</result>
+		</action>
 	</package>
 
 	<!-- 客户管理模块 -->
@@ -155,6 +161,7 @@
 			<result name="edit">/jsp/cust/cust_Private.jsp</result>
 			<result name="contactQuery">/jsp/contact/contactQuery.jsp</result>
 			<result name="maintainQuery">/jsp/maintain/maintainQueryForCust.jsp</result>
+			<result name="search">/jsp/cust/custSearch.jsp</result>
 		</action>
 		<action name="publicSysCustAction" class="soy.web.action.PublicSysCustAction">
 			<result name="query">/jsp/cust/custQuery_Public.jsp</result>
@@ -162,6 +169,7 @@
 			<result name="edit">/jsp/cust/cust_Public.jsp</result>
 			<result name="contactQuery">/jsp/contact/contactQuery.jsp</result>
 			<result name="maintainQuery">/jsp/maintain/maintainQueryForCust.jsp</result>
+			<result name="search">/jsp/cust/custSearch.jsp</result>
 		</action>
 		<action name="sysContactAction" class="soy.web.action.SysContactAction">
 			<result name="add">/jsp/contact/contact.jsp</result>
@@ -201,7 +209,8 @@
 		<action name="sysMaintainAction" class="soy.web.action.SysMaintainAction">
 			<result name="add">/jsp/maintain/maintain.jsp</result>
 			<result name="query">/jsp/maintain/maintainQuery.jsp</result>
-			<result name="edit">/jsp/maintain/maintain.jsp</result>			
+			<result name="edit">/jsp/maintain/maintain.jsp</result>	
+			<result name="search">/jsp/maintain/SysMaintain_Search.jsp</result>		
 		</action>
 		<!-- 客户管理-维护管理 -->
 		<action name="sysMaintainForCustAction" class="soy.web.action.SysMaintainForCustAction">
@@ -224,8 +233,10 @@
 	<package name="sysSupplierModel" extends="iterceptor" namespace="/sysSupplier">
 		<action name="sysSupplierAction" class="soy.web.action.SysSupplierAction">
 			<result name="add">/jsp/supplier/supplier.jsp</result>
-			<result name="edit">/jsp/supplier/supplier.jsp</result>
+			<result name="search">/jsp/supplier/SysSupplier_Search.jsp</result>
 			<result name="query">/jsp/supplier/supplierQuery.jsp</result>
+			<result name="edit">/jsp/supplier/SysSupplier_Edit.jsp</result>
+			<result name="show">/jsp/supplier/SysSupplier_Show.jsp</result>
 		</action>
 	</package>
 </struts>    

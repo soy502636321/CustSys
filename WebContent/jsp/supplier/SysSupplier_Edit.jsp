@@ -15,7 +15,7 @@
 				<tr class="forumRowHighlight"
 					style="background-color: #3c7fb5; color: #ffffff;">
 					<td colspan="4">
-						供应商增加
+						供应商修改:供应商编号(<s:property value="sysSupplierVO.id" />)
 						<s:actionerror cssStyle="color:red;" />
 						<s:actionmessage cssStyle="color:#ffffff;" />
 					</td>
@@ -140,13 +140,8 @@
 							<tr>
 								<td>
 									<div align="center">
-										<s:if test="edit">
-											<s:submit value="增  加" disabled="true"></s:submit>
-										</s:if>
-										<s:else>
-											<s:submit value="增  加" action="sysSupplierAction!save"
+										<s:submit value="修  改" action="sysSupplierAction!update"
 												onclick="return submitCheck(this) && isNumber(this);"></s:submit>
-										</s:else>
 										&nbsp;&nbsp;
 										<s:reset value="重  置"></s:reset>
 										&nbsp;&nbsp;

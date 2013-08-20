@@ -56,9 +56,9 @@
 		</set>
 		<set name="supplierQualities" table="supplier_qualities" cascade="all">
 			<key>
-				<column name="SUPPLIER" not-null="true" />
+				<column name="SUPPLIER_ID" not-null="true" />
 			</key>
-			<many-to-many class="soy.basic.database.entity.BaseQuality" column="QUALITY_ID" />
+			<many-to-many class="soy.basic.database.entity.BaseSupply" column="SUPPLY_ID" />
 		</set>
 	</class>
 </hibernate-mapping>

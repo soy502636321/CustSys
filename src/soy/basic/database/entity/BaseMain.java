@@ -1,8 +1,8 @@
 package soy.basic.database.entity;
 
 /**
+ * 主营实体类
  * @author XiaoLiang·Hu
- * 
  */
 public class BaseMain {
 	private Integer id;
