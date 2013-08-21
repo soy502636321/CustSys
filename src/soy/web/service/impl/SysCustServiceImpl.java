@@ -24,7 +24,7 @@ import soy.util.SystemUtil;
 import soy.web.service.SysCustService;
 
 public class SysCustServiceImpl implements SysCustService {
-	//日志
+	// 日志
 	private static final Logger log = LoggerFactory
 			.getLogger(SysCustServiceImpl.class);
 
@@ -50,17 +50,18 @@ public class SysCustServiceImpl implements SysCustService {
 		sysCustes = null;
 		return list;
 	}
-	
+
 	@Override
 	public PaginatedList findPublic(PaginatedList list, SysCustVO sysCustVO) {
 		return getSysCustDAO().findPublic(list, sysCustVO);
 	}
-	
+
 	@Override
-	public PaginatedList findPrivate(PaginatedList list, SysCustVO sysCustVO, SysUserVO sysUserVO) {
+	public PaginatedList findPrivate(PaginatedList list, SysCustVO sysCustVO,
+			SysUserVO sysUserVO) {
 		return getSysCustDAO().findPrivate(list, sysCustVO, sysUserVO);
 	}
-	
+
 	@Override
 	public List<SysCustVO> findAll() {
 		if (isChange() || SystemUtil.isNull(sysCustVOs)) {
@@ -127,7 +128,7 @@ public class SysCustServiceImpl implements SysCustService {
 		}
 		return vo;
 	}
-	
+
 	@Override
 	public SysCustVO save(SysCustVO sysCustVO, SysUserVO loginSysUserVO) {
 		setChange(true);
@@ -167,9 +168,9 @@ public class SysCustServiceImpl implements SysCustService {
 							Integer.valueOf(sysCustVO.getBaseStateId())); // 客户状态
 				}
 				sysCust.setBaseState(baseState);
-				sysCust.setCustType("E"); //开发客户类型
+				sysCust.setCustType("E"); // 开发客户类型
 				if (loginSysUserVO != null) {
-					sysCust.setPrivateUser(loginSysUserVO.getSysUser()); //开发人
+					sysCust.setPrivateUser(loginSysUserVO.getSysUser()); // 开发人
 				}
 
 				sysCust.setWebsite(sysCustVO.getWebsite()); // 公司主页
@@ -320,15 +321,20 @@ public class SysCustServiceImpl implements SysCustService {
 		}
 		return vo;
 	}
-	
+
 	@Override
 	public void toPrivate(Integer[] cbId, SysUserVO loginSysUserVO) {
 		getSysCustDAO().toPrivate(cbId, loginSysUserVO);
 	}
-	
+
 	@Override
 	public void toPublic(Integer[] cbId) {
 		getSysCustDAO().toPublic(cbId);
+	}
+
+	@Override
+	public PaginatedList findList(PaginatedList list, SysCustVO sysCustVO) {
+		return getSysCustDAO().findList(list, sysCustVO);
 	}
 
 	public SysCustDAO getSysCustDAO() {

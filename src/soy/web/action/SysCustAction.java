@@ -255,6 +255,14 @@ public class SysCustAction extends BaseAction {
 			e.printStackTrace();
 		}
 	}
+	
+	public String findList(){
+		log.debug("");
+		PaginatedList list = new PaginatedList(getPage());
+		list = getSysCustService().findList(list, getSysCustVO());
+		setList(list);
+		return ForwardUtil.FORWARD_LIST_PAGE;
+	}
 
 	//访问、设置属性
 	

@@ -326,6 +326,35 @@ function closeWindow(o) {
 	return false;
 }
 
+//display tag checkbox 单选
+function changeCheckBoxSingle(objCbChild, obj) {
+	if($(obj).is(':checked')) {
+		if (objCbChild.length != null) {
+			for (var i = 0; i < objCbChild.length; i++) {
+				if ($(objCbChild[i]).val() != $(obj).val()) {
+					$(objCbChild[i]).attr('checked', false);
+				}
+			}
+		}
+	}
+}
+
+//根据组件名字判断是否是单选的
+function jQuerySingleSelect(name) {
+	if (!name || name.length == 0) {
+		name = "cbId";
+	}
+	total = $('input:checked[name="' + name +'"]').length;
+	if (total < 1) {
+		alert("请选择一条记录!");
+		return false;		
+	} else if (total > 1) {
+		alert("只能同时选择一条记录!");
+		return false;		
+	}
+	return true;
+}
+
 function isNumber(o) {
 	var pattern = new RegExp(/^\d+(\.\d+)?$/);
 	var form = $(o).parents('form:first');
@@ -392,7 +421,7 @@ function searchSubmit(o) {
 			map[$(this).attr('name')] = $(this).val();
 		}
 	});
-	//多选下拉框
+	// 多选下拉框
 	$('form').find('select').each(function(i) {
 		if ($(this).prop('multiple') && $(this).attr('name') && $(this).attr('name').length > 0 && $(this).val()) {
 			map[$(this).attr('name')] = {
@@ -400,7 +429,7 @@ function searchSubmit(o) {
 			}
 		}
 	});
-	//大文本输入框
+	// 大文本输入框
 	$('form').find('textarea').each(function(i) {
 		if ($(this).attr('name') && $(this).attr('name').length > 0 && $(this).val() && $(this).val().length > 0) {
 			map[$(this).attr('name')] = $(this).val();
@@ -418,3 +447,112 @@ function closeThisWindow(o) {
 	window.close();
 	return false;
 }
+
+(function($) {
+	
+	$.fn.extend({
+		// 增加一个隐藏的值
+		addHidden: function (name, value) {
+			if ($(this).length > 0) {
+				var hidden = "<input type='hidden' name='" + name + "' value='" + value + "' />";
+				$(this).append(hidden);
+			}
+		},
+		addHiddenMap: function(map) {
+			if (map) {
+				for (value in map) {
+					var hidden = "<input type='hidden' name='" + value + "' value='" + map[value] + "' />";
+					$(this).append(hidden);
+				}
+			}
+		}
+	});
+	
+	$.extend({
+		// 在当前页面中打开一个字窗口，返回子窗口传值
+		openSubWindow: function (src, height, width, w) {
+			var sFeatures = "dialogHeight:" + height + "px;dialogWidth:" + width + "px;resizable:no;help:no;status:no;scroll:no;";
+			var result = window.showModalDialog(src, w, sFeatures);
+			return result;			
+		},
+		openTab: function(src) {
+		},
+		createSearchMap: function(obj, window) {
+			var form = $(obj).parents('form:first');
+			if (form && form.length > 0) {
+				var map = new Object();
+				// 文本框
+				$(form).find('input:text').each(function(i) {
+					if ($(this).attr('name') && $(this).attr('name').length > 0 && $(this).val() && $(this).val().length > 0) {
+						map[$(this).attr('name')] = $(this).val();
+					}
+				});
+				// 隐藏文本框
+				$(form).find('input:hidden').each(function(i) {
+					if ($(this).attr('name') && $(this).attr('name').length > 0 && $(this).val() && $(this).val().length > 0) {
+						map[$(this).attr('name')] = $(this).val();
+					}
+				});
+				// 单选下拉框
+				$(form).find('select').each(function(b) {
+					if (!$(this).prop('multiple') && $(this).attr('name') && $(this).attr('name').length > 0 && $(this).val() && $(this).val().length > 0) {
+						map[$(this).attr('name')] = $(this).val();
+					}
+				}); 
+				window.returnValue = map;
+				closeWindow(obj);
+			}
+			return false;
+		},
+		openSysCustList: function(obj, config, w) {
+			if (!config.multiple || config.multiple != true) {
+				// 单选
+				var src = window.basepath + '/sysCust/sysCustAction!findList?', height = 650, weight = 650;
+				if (config.data) {
+					// 增加查询洽谈人的参数
+					for (value in config.data) {
+						src += value + "=" + config.data[value] + "&";
+					}
+				}
+				var returnValue = $.openSubWindow(src, height, weight, w);
+				alert('返回:' + returnValue);
+				if (returnValue) {
+					// 假如有了模型，将根据模型来处理，不再返回洽谈人对象
+					if (config.model) {
+						var form = $(obj).parents('form:first');
+						for (value in config.model) {
+							// 获得选择器，根据选择器去获得标签，如果存在该标签，则修改值为模型对应的值，如果没有，将用模型的的属性为名字，新建一个标签
+							var selector = '[name="' + value + '"]';
+							var key = config.model[value];
+							var set = $(selector);
+							alert('ok');
+							if (set && set.length > 0) {
+								$(set).attr('value', returnValue[key]);
+							} else {
+								$(form).addHidden(value, returnValue[key]);
+							}
+						}
+					} else {
+						// 单选返回的是一个洽谈人对象
+						return returnValue;
+					}
+				}
+			} else {
+				// 多选
+				var src = window.basepath + '/sysCust/sysCustAction!findList?', height = 650, weight = 650;
+				if (config.data) {
+					// 增加查询洽谈人的参数
+					for (value in config.data) {
+						src += value + "=" + config.data[value] + "&";
+					}
+				}
+				var returnValue = $.openSubWindow(src, height, weight);
+				// 多选返回的是一个洽谈人对象数组
+				if (returnValue) {
+					
+				}
+				return returnValue;
+			}
+		}
+	});
+}($));

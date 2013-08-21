@@ -6,6 +6,18 @@
 		<meta http-equiv="pragma" content="no-cache">
 		<meta http-equiv="cache-control" content="no-cache">
 		<meta http-equiv="expires" content="0">
+		<script type="text/javascript">
+			var adapter = {
+					'multiple': false,
+					'data': {
+						//'custPalaverVO.custMainPid': '<s:property value="custMainVO.custPid"/>'
+					},
+					'model': {
+						'sysBusinessVO.sysCustId' : 'id',
+						'sysBusinessVO.sysCustName': 'name'
+					}
+				};
+		</script>
 	</head>
 
 	<body>
@@ -29,14 +41,15 @@
 				</tr>
 				<tr>
 					<td>
-						客户编号:*
+						客户名称:*
 					</td>
 					<td>
 						<s:if test="edit">
-							<s:textfield name="sysBusinessVO.sysCustId" disabled="true" />
+							<s:textfield name="sysBusinessVO.sysCustName" disabled="true" />
 						</s:if>
 						<s:else>
-						<s:textfield name="sysBusinessVO.sysCustId" data="客户编号" />
+						<s:textfield cssStyle="width: 60%;" name="sysBusinessVO.sysCustName" data="客户名称" disabled="true" />
+						<input type="button" value="选择客户" onclick="$.openSysCustList(this, adapter, window)" />
 						</s:else>
 					</td>
 					<td>
@@ -249,30 +262,6 @@
 						changeMonth : true,
 						dateFormat : 'yy-mm-dd'
 					});
-		});
-		//自动补全客户编号
-		$('input[name="sysBusinessVO.sysCustId"]').autocomplete({
-		     source: function( request, response ) {
-		         $.ajax({
-		           url: "<%= request.getContextPath() %>/sysCust/sysCustAction!searchJSON",
-		           dataType: "json",
-		           success: function( data ) {
-		           response( $.map( data.geonames, function( item ) {
-		            	var availableTags = new Array();
-		            	availableTags[0] = item.custId;
-		               	return availableTags;
-		           }));
-		           }
-		         });
-		    },
-			autoFocus : true,
-			mustMatch : true,
-			change : function(event, ui) {
-				if (!ui.item) {
-					alert('系统不存在该客户编号!');
-					$(this).val('');
-				}
-			}
 		});
 	});
 </script>

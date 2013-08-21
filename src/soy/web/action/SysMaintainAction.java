@@ -3,6 +3,7 @@ package soy.web.action;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import soy.basic.database.entity.SysCust;
 import soy.basic.vo.SysMaintainVO;
 import soy.util.ForwardUtil;
 import soy.util.PaginatedList;

@@ -33,7 +33,7 @@ public class SysMaintainForCustAction extends BaseAction {
 	public String query() {
 		log.debug("跳转到客户维护记录的主界面");
 		PaginatedList list = getSysMaintainService().find(
-				new PaginatedList(getPage()), getSysMaintainVO(), null);
+				new PaginatedList(getPage()), getSysMaintainVO(), getSysCustVO());
 		setList(list);
 		return ForwardUtil.FORWARD_QUERY_PAGE;
 	}

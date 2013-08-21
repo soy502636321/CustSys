@@ -32,8 +32,9 @@ public class SysBusinessVO {
 	private String basePaymentId;
 
 	private SysCust sysCust; // 客户外键
+	private String sysCustName;
 	private SysUser privateUser; // 开发人
-	private String privateUserUsername; 
+	private String privateUserUsername;
 	private String sysCustId; // 客户编号
 
 	private BaseDelivery baseDelivery; // 交付方式
@@ -547,6 +548,14 @@ public class SysBusinessVO {
 
 	public void setPrivateUserUsername(String privateUserUsername) {
 		this.privateUserUsername = privateUserUsername;
+	}
+
+	public String getSysCustName() {
+		return sysCustName;
+	}
+
+	public void setSysCustName(String sysCustName) {
+		this.sysCustName = sysCustName;
 	}
 
 }

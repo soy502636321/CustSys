@@ -33,4 +33,6 @@ public interface SysCustService {
 	public void toPrivate(Integer[] cbId, SysUserVO loginSysUserVO);
 
 	public void toPublic(Integer[] cbId);
+
+	public PaginatedList findList(PaginatedList list, SysCustVO sysCustVO);
 }

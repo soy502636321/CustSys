@@ -400,4 +400,61 @@ public class SysCustDAOImpl extends HibernateDaoSupport implements SysCustDAO {
 			throw e;
 		}
 	}
+	
+	@Override
+	public PaginatedList findList(final PaginatedList list, final SysCustVO vo) {
+		try {
+			PaginatedList result = getHibernateTemplate().execute(new HibernateCallback<PaginatedList>() {
+
+				@Override
+				public PaginatedList doInHibernate(Session session)
+						throws HibernateException, SQLException {
+					StringBuffer hql = new StringBuffer("from SysCust as model where 1 = 1");
+					if (vo != null) {
+						//客户编号
+						if (!StringUtil.isNull(vo.getId())) {
+							if (StringUtil.isInteger(vo.getId())) {
+								hql.append(" and model.id = ").append(vo.getId());
+							} else {
+								hql.append(" and 1 = 2");
+							}
+						}
+						//客户名称 
+						if (!StringUtil.isNull(vo.getName())) {
+							hql.append(" and model.name like '%").append(vo.getName()).append("%'");
+						}	
+						if (!StringUtil.isNull(vo.getCustType())) {
+							if ("E".equals(vo.getCustType())) {
+								hql.append(" and model.custType = 'E'");
+							} else {
+								hql.append(" and (model.custType <> 'E' or model.custType is null or model.custType = '')");
+							}
+						}
+					}
+					
+					//查询客户集合
+					Query query = session.createQuery("select model " + hql.toString());
+					query.setFirstResult(list.getStartNumber()).
+					setMaxResults(list.getObjectsPerPage());
+					list.setList(HibernateUtil.parseToVos(query.list(), SysCustVO.class));
+					
+					//统计客户集合
+					query = session.createQuery("select count(*) " + hql.toString());
+					int count = ((Number) query.list().iterator().next()).intValue();
+					list.setFullListSize(count);
+					
+					query = null;
+					hql = null;
+					
+					return list;
+				}
+			});
+			return result;
+		} catch (DataAccessException e) {
+			log.error("", e);
+			throw e;
+		} finally {
+			
+		}
+	}
 }

@@ -1,5 +1,8 @@
 package soy.basic.vo;
 
+import org.apache.struts2.json.JSONException;
+import org.apache.struts2.json.JSONUtil;
+import org.apache.struts2.json.annotations.JSON;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -43,6 +46,8 @@ public class SysCustVO {
 	private SysUser privateUser; // 开发人
 	private String privateUserUsername;
 
+	private String json;
+
 	public SysCustVO() {
 	}
 
@@ -50,6 +55,7 @@ public class SysCustVO {
 		this.sysCust = sysCust;
 	}
 
+	@JSON(serialize = false)
 	public SysCust getSysCust() {
 		return sysCust;
 	}
@@ -69,6 +75,7 @@ public class SysCustVO {
 		this.id = id;
 	}
 
+	@JSON(serialize = false)
 	public BaseIndustry getBaseIndustry() {
 		if (getSysCust() != null && baseIndustry == null) {
 			baseIndustry = getSysCust().getBaseIndustry();
@@ -80,6 +87,7 @@ public class SysCustVO {
 		this.baseIndustry = baseIndustry;
 	}
 
+	@JSON(serialize = false)
 	public BaseType getBaseType() {
 		if (getSysCust() != null && baseType == null) {
 			baseType = getSysCust().getBaseType();
@@ -91,6 +99,7 @@ public class SysCustVO {
 		this.baseType = baseType;
 	}
 
+	@JSON(serialize = false)
 	public BaseState getBaseState() {
 		if (getSysCust() != null && baseState == null) {
 			baseState = getSysCust().getBaseState();
@@ -102,6 +111,7 @@ public class SysCustVO {
 		this.baseState = baseState;
 	}
 
+	@JSON(serialize = false)
 	public BaseSource getBaseSource() {
 		if (getSysCust() != null && baseSource == null) {
 			baseSource = getSysCust().getBaseSource();
@@ -275,6 +285,7 @@ public class SysCustVO {
 		this.custType = custType;
 	}
 
+	@JSON(serialize = false)
 	public SysUser getPrivateUser() {
 		if (getSysCust() != null && privateUser == null) {
 			privateUser = getSysCust().getPrivateUser();
@@ -297,4 +308,17 @@ public class SysCustVO {
 		this.privateUserUsername = privateUserUsername;
 	}
 
+	@JSON(serialize = false)
+	public String getJson() {
+		try {
+			json = JSONUtil.serialize(this);
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		return json;
+	}
+
+	public void setJson(String json) {
+		this.json = json;
+	}
 }

@@ -41,4 +41,6 @@ public class ForwardUtil {
 
 	public static final String FORWARD_SHOW_PAGE = "show";
 
+	public static final String FORWARD_LIST_PAGE = "list";
+
 }

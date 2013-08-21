@@ -40,4 +40,6 @@ public interface SysCustDAO extends BaseDAO {
 	public void toPublic(Integer[] cbId);
 	
 	public void setPublic(Integer[] cbId);
+
+	public PaginatedList findList(PaginatedList list, SysCustVO sysCustVO);
 }

@@ -1,6 +1,8 @@
 package soy.web.action;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
@@ -96,7 +98,19 @@ public class LoginAction extends BaseAction {
 	public String getMenuStr(LoginUserVO userVO) {
 		String contextPath = this.getRequest().getContextPath();
 		String nodes = "";
-		for (SysFunction function : userVO.getMenuFunctionList()) {
+		List<SysFunction> functions = userVO.getMenuFunctionList();
+		Collections.sort(functions, new Comparator<SysFunction>() {
+
+			@Override
+			public int compare(SysFunction o1, SysFunction o2) {
+				if (o1 != null && o2 != null) {
+					return o1.getId().intValue() - o2.getId().intValue();
+				}
+				return 0;
+			}
+			
+		});
+		for (SysFunction function : functions) {
 			Integer functionID = function.getId();
 			Integer parentID = new Integer(0);
 			String functionName = function.getFunctionName();

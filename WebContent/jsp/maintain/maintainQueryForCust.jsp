@@ -14,13 +14,13 @@
 			<s:hidden name="sysCustVO.id"></s:hidden>
 			<br>
 			<table align="center" class="tableBorder"
-				style="margin: auto; min-width:  1000px;">
+				style="margin: auto; min-width: 1000px;">
 				<tr class="forumRowHighlight"
 					style="background-color: #3c7fb5; color: #ffffff;">
 					<td colspan="4">
 						客户编号(
 						<s:property value="sysCustVO.id" />
-						)的联系方式
+						)的维护记录
 						<s:actionerror cssStyle="color:red;" />
 						<s:actionmessage cssStyle="color:#ffffff;" />
 					</td>
