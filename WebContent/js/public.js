@@ -514,8 +514,7 @@ function closeThisWindow(o) {
 						src += value + "=" + config.data[value] + "&";
 					}
 				}
-				var returnValue = $.openSubWindow(src, height, weight, w);
-				alert('返回:' + returnValue);
+				var returnValue = $.openSubWindow(src, height, weight, window);
 				if (returnValue) {
 					// 假如有了模型，将根据模型来处理，不再返回洽谈人对象
 					if (config.model) {
@@ -525,7 +524,6 @@ function closeThisWindow(o) {
 							var selector = '[name="' + value + '"]';
 							var key = config.model[value];
 							var set = $(selector);
-							alert('ok');
 							if (set && set.length > 0) {
 								$(set).attr('value', returnValue[key]);
 							} else {

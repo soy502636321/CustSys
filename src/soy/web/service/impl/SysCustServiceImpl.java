@@ -321,6 +321,11 @@ public class SysCustServiceImpl implements SysCustService {
 		}
 		return vo;
 	}
+	
+	@Override
+	public PaginatedList findDevelop(PaginatedList list, SysCustVO sysCustVO) {
+		return getSysCustDAO().findDevelop(list, sysCustVO);
+	}
 
 	@Override
 	public void toPrivate(Integer[] cbId, SysUserVO loginSysUserVO) {

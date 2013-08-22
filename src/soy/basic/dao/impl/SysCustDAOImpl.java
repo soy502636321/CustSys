@@ -457,4 +457,42 @@ public class SysCustDAOImpl extends HibernateDaoSupport implements SysCustDAO {
 			
 		}
 	}
+	
+	@Override
+	public PaginatedList findDevelop(final PaginatedList list, final SysCustVO vo) {
+		try {
+			PaginatedList result = getHibernateTemplate().execute(new HibernateCallback<PaginatedList>() {
+
+				@Override
+				public PaginatedList doInHibernate(Session session)
+						throws HibernateException, SQLException {
+					StringBuffer hql = new StringBuffer("from SysCust as model where model.custType = 'E'");
+					
+					if (vo != null) {
+						
+					}
+					
+					//查询全部的开发客户
+					Query query = session.createQuery("select model " + hql.toString());
+					query.setFirstResult(list.getStartNumber()).
+						setMaxResults(list.getObjectsPerPage());
+					list.setList(HibernateUtil.parseToVos(query.list(), SysCustVO.class));
+					
+					//统计全部的开发客户
+					query = session.createQuery("select count(*) " + hql.toString());
+					int count = ((Number) query.list().iterator().next()).intValue();
+					list.setFullListSize(count);
+					
+					return list;
+				}
+			});
+			return result;
+		} catch (DataAccessException e) {
+			log.error("分页查询开发客户错误", e);
+			throw e;
+		} finally {
+			
+		}
+	}
+	
 }

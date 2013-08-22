@@ -4,6 +4,7 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
 <html>
 	<head>
+		<base target="_self" />
 		<meta http-equiv="pragma" content="no-cache">
 		<meta http-equiv="cache-control" content="no-cache">
 		<meta http-equiv="expires" content="0">
@@ -11,11 +12,10 @@
 
 	<body>
 		<br>
-		<s:form action="sysCustAction" namespace="/sysCust">
+		<s:form action="sysCustAction" namespace="/sysCust" target="" >
 			<table align="center" class="tableBorder"
 				style="margin: auto; width: 600px;">
-				<tr
-					class="header ui-accordion-header ui-helper-reset ui-state-default ui-corner-all ui-accordion-icons">
+				<tr>
 					<td colspan="4" class="header">
 						客户选择
 						<s:actionerror cssStyle="color:red;" />

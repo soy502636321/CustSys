@@ -3,7 +3,7 @@
 <%@ taglib uri="/WEB-INF/struts-tags.tld" prefix="s"%>
 <%@ taglib uri="/WEB-INF/button.tld" prefix="hq" %>
 <jsp:directive.page import="soy.util.GlobalUtil"/>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!DOCTYPE HTML>
 <html>
   <head>
    

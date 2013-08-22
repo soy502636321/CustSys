@@ -35,4 +35,6 @@ public interface SysCustService {
 	public void toPublic(Integer[] cbId);
 
 	public PaginatedList findList(PaginatedList list, SysCustVO sysCustVO);
+
+	public PaginatedList findDevelop(PaginatedList list, SysCustVO sysCustVO);
 }

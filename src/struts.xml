@@ -172,6 +172,14 @@
 			<result name="maintainQuery">/jsp/maintain/maintainQueryForCust.jsp</result>
 			<result name="search">/jsp/cust/custSearch.jsp</result>
 		</action>
+		<action name="developSysCustAction" class="soy.web.action.DevelopSysCustAction">
+			<result name="query">/jsp/cust/SysCust_Develop_Query.jsp</result>
+			<result name="add">/jsp/cust/cust_Public.jsp</result>
+			<result name="edit">/jsp/cust/cust_Public.jsp</result>
+			<result name="contactQuery">/jsp/contact/contactQuery.jsp</result>
+			<result name="maintainQuery">/jsp/maintain/maintainQueryForCust.jsp</result>
+			<result name="search">/jsp/cust/custSearch.jsp</result>
+		</action>
 		<action name="sysContactAction" class="soy.web.action.SysContactAction">
 			<result name="add">/jsp/contact/contact.jsp</result>
 			<result name="query">/jsp/contact/contactQuery.jsp</result>
