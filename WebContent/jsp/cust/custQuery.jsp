@@ -1,19 +1,22 @@
 <jsp:directive.include file="/include/mainMenu.jsp" />
 <%@ page language="java" pageEncoding="UTF-8"%>
+<%@ taglib uri="/WEB-INF/button.tld" prefix="hq" %>
 <html>
 	<head>
 		<meta http-equiv="pragma" content="no-cache">
 		<meta http-equiv="cache-control" content="no-cache">
 		<meta http-equiv="expires" content="0">
 	</head>
-	
+
 	<body>
 		<s:form action="sysCustAction" namespace="/sysCust">
 			<br>
 			<table>
 				<tr>
 					<td colspan="4">
-						<s:submit value="查  询" onclick="return openSearchDialog(this, 'sysCustAction!search', 500, 300);" action="sysCustAction!query" />
+						<s:submit value="查  询"
+							onclick="return openSearchDialog(this, 'sysCustAction!search', 500, 300);"
+							action="sysCustAction!query" />
 					</td>
 				</tr>
 				<tr>
@@ -34,7 +37,7 @@
 							<display:column property="id"
 								decorator="soy.common.displaytag.CheckBoxDecorator"
 								style="width:3%;"
-								title="<input type=checkbox class=checkbox name=cbAll onclick=changeCheckBoxAll(this,\"cbId\")>">
+								title="<input type=checkbox class=checkbox name=cbAll onclick=changeCheckBoxAll(this,\"cbId\")>" >
 							</display:column>
 							<display:column property="id" title="客户编号"></display:column>
 							<display:column property="name" title="客户名称"></display:column>
@@ -51,9 +54,9 @@
 					</td>
 				</tr>
 			</table>
-			
-			<hq:buttons function="14">
+			<hq:buttons function="14" >
 				<hq:button name="添加客户" mode="all"></hq:button>
+				<hq:button name="显示客户" mode="single"></hq:button>
 				<hq:button name="修改客户" mode="single"></hq:button>
 				<hq:button name="联系方式" mode="single"></hq:button>
 				<hq:button name="维护记录" mode="single"></hq:button>

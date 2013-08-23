@@ -59,6 +59,22 @@ public class SysCustAction extends BaseAction {
 		return ForwardUtil.FORWARD_SEARCH_PAGE;
 	}
 	
+	public String show() {
+		log.debug("ACTION:显示正常客户记录");
+		setEdit(true);
+		if (SystemUtil.isNull(getCbId())) {
+			addActionError("请先选择客户记录!");
+		} else {
+			SysCustVO sysCustVO = getSysCustService().findById(getCbId()[0]);
+			if (sysCustVO == null) {
+				addActionError("未能找到你所选择的客户记录!");
+			} else {
+				setSysCustVO(sysCustVO);
+			}
+		}
+		return ForwardUtil.FORWARD_SHOW_PAGE;
+	}
+	
 	
 	/**
 	 * 添加客户

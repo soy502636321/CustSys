@@ -6,10 +6,6 @@
 	<jsp-version>1.2</jsp-version>
 	<uri>/hq</uri>
 	<short-name>hq</short-name>
-	<description>用户标记权限的</description>
-	<display-name>custsys</display-name>
-	<small-icon>small</small-icon>
-	<large-icon>large</large-icon>
 	<tag>
 		<name>button</name>
 		<tag-class>soy.common.tag.ButtonTag</tag-class>
@@ -35,6 +31,12 @@
 		<attribute>
 			<name>type</name>
 		</attribute>
+		<attribute>
+			<name>dialogWidth</name>
+		</attribute>
+		<attribute>
+			<name>dialogHeight</name>
+		</attribute>
 	</tag>
 	<tag>
 		<name>buttons</name>
@@ -46,6 +48,9 @@
 		</attribute>
 		<attribute>
 			<name>id</name>
+		</attribute>
+		<attribute>
+			<name>size</name>
 		</attribute>
 	</tag>
 </taglib>

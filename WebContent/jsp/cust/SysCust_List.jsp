@@ -2,6 +2,7 @@
 <jsp:directive.include file="/include/mainMenu.jsp" />
 <!-- 分配重新开发用户 -->
 <%@ page language="java" pageEncoding="UTF-8"%>
+<!DOCTYPE html >
 <html>
 	<head>
 		<base target="_self" />
@@ -66,11 +67,10 @@
 								style="width:3%;"
 								title="单选">
 							</display:column>
-							<display:column property="id" title="客户编号" />
-							<display:column property="name" title="客户名字" />
-							<display:column title="客户类型">
-								<input type="hidden" value='${ row.json }' />
-							</display:column>
+							<display:column property="id" title="客户编号" class="id" />
+							<display:column property="name" title="客户名字" class="name" />
+							<display:column title="客户类型" class="" />
+							<display:column title="开发人" />
 						</display:table>
 					</td>
 				</tr>
@@ -85,11 +85,12 @@
 				//获得选中的行
 				var tr = $(checkbox).parents('tr:first');
 				//获得选中的洽谈人对象
-				var custPalaver = JSON.parse($(tr).find('input:hidden').val());
+				var sysCust = new Object();
+				sysCust['id'] = $(tr).find('.id').html();
+				sysCust['name'] = $(tr).find('.name').html();
 				//赋值给返回对象
-				window.returnValue = custPalaver;
+				window.returnValue = sysCust;
 				
-				alert(window.returnValue);
 				//关闭当前窗口
 				closeThisWindow(o);
 			}

@@ -1,9 +1,9 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://displaytag.sf.net" prefix="display"%>
-<%@ taglib uri="/WEB-INF/struts-tags.tld" prefix="s"%>
 <%@ taglib uri="/WEB-INF/button.tld" prefix="hq" %>
+<%@ taglib uri="/WEB-INF/struts-tags.tld" prefix="s"%>
 <jsp:directive.page import="soy.util.GlobalUtil"/>
-<!DOCTYPE HTML>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <html>
   <head>
    
@@ -22,20 +22,15 @@
 	<script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery-ui-timepicker-addon.js"></script>
 	<SCRIPT type="text/javascript" src="<%=request.getContextPath()%>/js/public.js"></SCRIPT>
 	
-	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/zTreeStyle.css">
-	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/displayTag.css">
-	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/public.css">
-	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/jquery-ui-1.9.2.custom.css">
-	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/chosen.css">
+	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/zTreeStyle.css" />
+	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/displayTag.css" />
+	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/public.css" />
+	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/jquery-ui-1.9.2.custom.css" />
+	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/chosen.css" />
 	
 	<script type="text/javascript">
-		window.basepath = '<%= application.getContextPath() %>';
+		window.basepath = "<%= application.getContextPath() %>";
 	</script>	
-  </head>
-  
-  <%
-	int pageSize = GlobalUtil.getPageSize();
-  %>
-  
+  </head>  
 
 </html>

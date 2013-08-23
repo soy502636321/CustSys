@@ -54,6 +54,7 @@
 			
 			<hq:buttons function="9024">
 				<hq:button name="添加客户" mode="all"></hq:button>
+				<hq:button name="显示客户" mode="single"></hq:button>
 				<hq:button name="修改客户" mode="single"></hq:button>
 				<hq:button name="联系方式" mode="single"></hq:button>
 				<hq:button name="维护记录" mode="single"></hq:button>

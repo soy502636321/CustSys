@@ -69,6 +69,7 @@
 			</table>
 			<hq:buttons function="16">
 				<hq:button name="添加订单" mode="all"></hq:button>
+				<hq:button name="显示订单" mode="single"></hq:button>
 				<hq:button name="修改订单" mode="single"></hq:button>
 				<hq:button name="订单要求" mode="single"></hq:button>
 				<hq:button name="客户特点" mode="single"></hq:button>

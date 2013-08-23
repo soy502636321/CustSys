@@ -551,6 +551,9 @@ public class SysBusinessVO {
 	}
 
 	public String getSysCustName() {
+		if (getSysCust() != null && sysCustName == null) {
+			sysCustName = getSysCust().getName();
+		}
 		return sysCustName;
 	}
 

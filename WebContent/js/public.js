@@ -1,37 +1,3 @@
-function winOpen1(src, height, width) {
-	var sFeatures = "dialogHeight:" + height + "px;dialogWidth:" + width
-			+ "px;resizable:no;help:no;status:no;scroll:no;";
-	var result = window.showModalDialog(src, window, sFeatures);
-	return result;
-
-}
-function winOpen(sName, sUrl, iWidth, iHeight, bCentre) {
-	var sFeatures;
-	var iTop, iLeft;
-	iWidth = iWidth + 20;
-	if (bCentre != true) {
-		iTop = 0;
-		iLeft = 0;
-	} else {
-		iTop = (screen.availHeight - iHeight) / 2;
-		iLeft = (screen.availWidth - iWidth) / 2;
-		// iTop=(screen.height-iHeight)/2;
-		// iLeft=(screen.width-iWidth)/2;
-	}
-	sFeatures = "height="
-			+ iHeight
-			+ ",width="
-			+ iWidth
-			+ ",top="
-			+ iTop
-			+ ",left="
-			+ iLeft
-			+ ",status=no, toolbar=no, menubar=no, location=no, resizable=no, scrollbars=yes";
-	var objWin;
-	objWin = window.open(sUrl, sName, sFeatures, "true");
-	objWin.focus();
-	return objWin;
-}
 function changeCheckBoxAll(obj, keys) {
 	nodes = document.getElementsByName(keys);
 	for (var i = 0; i < nodes.length; i++) {
@@ -175,14 +141,16 @@ function moreSelect() {
 
 // 判断复选框只能单选
 function singleSelectCheckBox(checkboxName) {
-	var strIds = getCbValue(document.all(checkboxName), 1);
-	if (strIds == "") {
-		alert("请选择一条记录!");
-		return false;
+	if (!checkboxName || checkboxName.length == 0) {
+		name = "cbId";
 	}
-	if (strIds.indexOf(",") != -1) {
-		alert("只能选择一条记录!");
-		return false;
+	total = $('input:checked[name="' + checkboxName +'"]').length;
+	if (total < 1) {
+		alert("请选择一条记录!");
+		return false;		
+	} else if (total > 1) {
+		alert("只能同时选择一条记录!");
+		return false;		
 	}
 	return true;
 }
@@ -361,7 +329,7 @@ function isNumber(o) {
 	b = true;
 	if (form) {
 		$(form).find('input').each(function(i) {
-					if ($(this).attr('num') && !pattern.test($(this).val())
+					if ($(this).val() && $(this).val.length > 0 && $(this).attr('num') && !pattern.test($(this).val())
 							&& b) {
 						alert($(this).attr('num') + '只能为数字!');
 						b = false;

@@ -147,6 +147,7 @@
 	<package name="sysCustModel" extends="iterceptor" namespace="/sysCust">
 		<action name="sysCustAction" class="soy.web.action.SysCustAction">
 			<result name="add">/jsp/cust/cust.jsp</result>
+			<result name="show">/jsp/cust/SysCust_Show.jsp</result>
 			<result name="query">/jsp/cust/custQuery.jsp</result>
 			<result name="edit">/jsp/cust/cust.jsp</result>
 			<result name="contactQuery">/jsp/contact/contactQuery.jsp</result>
@@ -158,6 +159,7 @@
 		</action>
 		<action name="privateSysCustAction" class="soy.web.action.PrivateSysCustAction">
 			<result name="query">/jsp/cust/custQuery_Private.jsp</result>
+			<result name="show">/jsp/cust/SysCust_Show.jsp</result>
 			<result name="add">/jsp/cust/cust_Private.jsp</result>
 			<result name="edit">/jsp/cust/cust_Private.jsp</result>
 			<result name="contactQuery">/jsp/contact/contactQuery.jsp</result>
@@ -167,6 +169,7 @@
 		<action name="publicSysCustAction" class="soy.web.action.PublicSysCustAction">
 			<result name="query">/jsp/cust/custQuery_Public.jsp</result>
 			<result name="add">/jsp/cust/cust_Public.jsp</result>
+			<result name="show">/jsp/cust/SysCust_Show.jsp</result>
 			<result name="edit">/jsp/cust/cust_Public.jsp</result>
 			<result name="contactQuery">/jsp/contact/contactQuery.jsp</result>
 			<result name="maintainQuery">/jsp/maintain/maintainQueryForCust.jsp</result>
@@ -175,6 +178,7 @@
 		<action name="developSysCustAction" class="soy.web.action.DevelopSysCustAction">
 			<result name="query">/jsp/cust/SysCust_Develop_Query.jsp</result>
 			<result name="add">/jsp/cust/cust_Public.jsp</result>
+			<result name="show">/jsp/cust/SysCust_Show.jsp</result>
 			<result name="edit">/jsp/cust/cust_Public.jsp</result>
 			<result name="contactQuery">/jsp/contact/contactQuery.jsp</result>
 			<result name="maintainQuery">/jsp/maintain/maintainQueryForCust.jsp</result>
@@ -197,6 +201,7 @@
 			<result name="feature">/jsp/business/feature.jsp</result>
 			<result name="records">/jsp/record/recordQuery.jsp</result>
 			<result name="search">/jsp/business/businessSearch.jsp</result>
+			<result name="show">/jsp/business/SysBusiness_Show.jsp</result>
 		</action>
 		<action name="secretSysBusinessAction" class="soy.web.action.SecretSysBusinessAction">
 			<result name="query">/jsp/business/business_Query_Secret.jsp</result>

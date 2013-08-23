@@ -167,6 +167,21 @@ public class SysBusinessAction extends BaseAction {
 		}			
 		return "records";
 	}
+	
+	public String show() {
+		log.debug("ACTION:显示订单记录");
+		if (SystemUtil.isNull(getCbId())) {
+			addActionError("请先选择业务记录!");
+		} else {
+			SysBusinessVO sysBusinessVO = getSysBusinessService().findById(getCbId()[0]);
+			if (sysBusinessVO == null) {
+				addActionError("未能找到你所选择的业务记录!");
+			} else {
+				setSysBusinessVO(sysBusinessVO);
+			}
+		}
+		return ForwardUtil.FORWARD_SHOW_PAGE;	
+	}
 
 	public String back() {
 		log.debug("");

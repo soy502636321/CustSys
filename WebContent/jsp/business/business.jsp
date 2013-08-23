@@ -40,7 +40,7 @@
 					</td>
 				</tr>
 				<tr>
-					<td>
+					<td style="width: 80px">
 						客户名称:*
 					</td>
 					<td>
@@ -52,7 +52,7 @@
 						<input type="button" value="选择客户" onclick="$.openSysCustList(this, adapter, window)" />
 						</s:else>
 					</td>
-					<td>
+					<td style="width: 80px;">
 						合同编号:*
 					</td>
 					<td>
