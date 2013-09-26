@@ -2,15 +2,15 @@
 Navicat MySQL Data Transfer
 
 Source Server         : MySQL
-Source Server Version : 50162
+Source Server Version : 50533
 Source Host           : localhost:3306
 Source Database       : custsys
 
 Target Server Type    : MYSQL
-Target Server Version : 50162
+Target Server Version : 50533
 File Encoding         : 65001
 
-Date: 2013-08-08 18:53:40
+Date: 2013-09-26 17:23:39
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -179,6 +179,21 @@ CREATE TABLE `base_state` (
 INSERT INTO `base_state` VALUES ('1', '状态-1', '');
 
 -- ----------------------------
+-- Table structure for `base_supply`
+-- ----------------------------
+DROP TABLE IF EXISTS `base_supply`;
+CREATE TABLE `base_supply` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `SUPPLY_NAME` varchar(100) DEFAULT NULL,
+  `REMARK` longtext,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of base_supply
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for `base_type`
 -- ----------------------------
 DROP TABLE IF EXISTS `base_type`;
@@ -324,11 +339,17 @@ DROP TABLE IF EXISTS `supplier_qualities`;
 CREATE TABLE `supplier_qualities` (
   `SUPPLIER` int(11) NOT NULL,
   `QUALITY_ID` int(11) NOT NULL,
+  `SUPPLIER_ID` int(11) DEFAULT NULL,
+  `SUPPLY_ID` int(11) DEFAULT NULL,
   PRIMARY KEY (`SUPPLIER`,`QUALITY_ID`),
   KEY `FKFC1C732A2F4FC120` (`QUALITY_ID`),
   KEY `FKFC1C732AB227E95C` (`SUPPLIER`),
+  KEY `FKFC1C732AF81F83FE` (`SUPPLIER_ID`),
+  KEY `FKFC1C732AC9DC22D4` (`SUPPLY_ID`),
   CONSTRAINT `FKFC1C732A2F4FC120` FOREIGN KEY (`QUALITY_ID`) REFERENCES `base_quality` (`ID`),
-  CONSTRAINT `FKFC1C732AB227E95C` FOREIGN KEY (`SUPPLIER`) REFERENCES `sys_supplier` (`ID`)
+  CONSTRAINT `FKFC1C732AB227E95C` FOREIGN KEY (`SUPPLIER`) REFERENCES `sys_supplier` (`ID`),
+  CONSTRAINT `FKFC1C732AC9DC22D4` FOREIGN KEY (`SUPPLY_ID`) REFERENCES `base_supply` (`ID`),
+  CONSTRAINT `FKFC1C732AF81F83FE` FOREIGN KEY (`SUPPLIER_ID`) REFERENCES `sys_supplier` (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -427,11 +448,15 @@ CREATE TABLE `sys_cust` (
   `WEBSITE` varchar(500) DEFAULT NULL,
   `REMARK` varchar(500) DEFAULT NULL,
   `FEATURE` varchar(500) DEFAULT NULL,
+  `CUST_TYPE` varchar(100) DEFAULT NULL,
+  `PRIVATE_USER_ID` int(11) DEFAULT NULL,
   PRIMARY KEY (`ID`),
   KEY `INDUSTRY_ID` (`INDUSTRY_ID`),
   KEY `TYPE_ID` (`TYPE_ID`),
   KEY `SOURCE_ID` (`SOURCE_ID`),
   KEY `STATE_ID` (`STATE_ID`),
+  KEY `FK749FF885888BEAE2` (`PRIVATE_USER_ID`),
+  CONSTRAINT `FK749FF885888BEAE2` FOREIGN KEY (`PRIVATE_USER_ID`) REFERENCES `sys_user` (`ID`),
   CONSTRAINT `sys_cust_ibfk_1` FOREIGN KEY (`INDUSTRY_ID`) REFERENCES `base_industry` (`ID`),
   CONSTRAINT `sys_cust_ibfk_2` FOREIGN KEY (`TYPE_ID`) REFERENCES `base_type` (`ID`),
   CONSTRAINT `sys_cust_ibfk_3` FOREIGN KEY (`SOURCE_ID`) REFERENCES `base_source` (`ID`),
@@ -441,7 +466,7 @@ CREATE TABLE `sys_cust` (
 -- ----------------------------
 -- Records of sys_cust
 -- ----------------------------
-INSERT INTO `sys_cust` VALUES ('1', '客户-1', '', '', '1', '1', '1', '1', '', '', null);
+INSERT INTO `sys_cust` VALUES ('1', '客户-1', '', '', '1', '1', '1', '1', '', '', null, null, null);
 
 -- ----------------------------
 -- Table structure for `sys_function`

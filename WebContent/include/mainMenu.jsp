@@ -30,6 +30,17 @@
 	
 	<script type="text/javascript">
 		window.basepath = "<%= application.getContextPath() %>";
+		$(function() {
+			$('body').bind('contextmenu', function() {
+				window.event.returnValue=false;
+			}).bind('selectstart', function() {
+				return false;
+			}).bind('copy', function() {
+				return false;
+			}).bind('cut', function() {
+				return false;
+			});
+		});
 	</script>	
   </head>  
 
