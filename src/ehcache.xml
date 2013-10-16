@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="ehcache.xsd">
+	<defaultCache maxElementsInMemory="10000"
+		timeToLiveSeconds="30" />
+	<cache name="query.StreetTypes" maxElementsInMemory="10000"
+		timeToLiveSeconds="60" />
+</ehcache>

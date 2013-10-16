@@ -2,6 +2,11 @@ package soy.basic.dao.impl;
 
 import static org.junit.Assert.*;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+
 import org.junit.Test;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -94,13 +99,18 @@ public class SysCustDAOImplTest {
 
 	@Test
 	public void testToPrivate() {
-//		SysCustDAO sysCustDAO = (SysCustDAO) factory.getBean("sysCustDAO");
-//		SysUserDAO sysUserDAO = (SysUserDAO) factory.getBean("sysUserDAO");
-//		SysUser sysUser = (SysUser) sysUserDAO.findById(3);
-//		sysUserDAO.delete(sysUser);
-		SysUserService sysUserService = (SysUserService) factory.getBean("sysUserService");
-		Integer[] ids = new Integer[] {3};
-		sysUserService.delete(ids);
+		SysCustDAO sysCustDAO = (SysCustDAO) factory.getBean("sysCustDAO");
+		while (true) {
+			List list = sysCustDAO.testFind();
+			DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			System.out.println(dateFormat.format(new Date()) + " - " + list.size());
+			try {
+				Thread.currentThread().sleep(5000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 	}
 
 }

@@ -6,6 +6,7 @@
 -->
 <hibernate-mapping>
     <class name="soy.basic.database.entity.SysCust" table="sys_cust" catalog="custsys">
+    	<cache usage="read-write"/>
         <id name="id" type="java.lang.Integer">
             <column name="ID" />
             <generator class="identity" />
