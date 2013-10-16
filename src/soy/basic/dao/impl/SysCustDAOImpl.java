@@ -192,13 +192,15 @@ public class SysCustDAOImpl extends HibernateDaoSupport implements SysCustDAO {
 				}
 				
 				Query query = session.createQuery("select DISTINCT t " + hql);
+				query.setCacheable(true);
+				query.setCacheRegion("query.StreetTypes");
 				query.setFirstResult(list.getStartNumber()).setMaxResults(list.getObjectsPerPage());
 				list.setList(query.list());
 				
-				query = session.createQuery("select count(DISTINCT t) " + hql);
-				int count = ((Number)query.list().iterator().next()).intValue();
-				list.setFullListSize(count);
-				query = null;
+//				Query countQuery = session.createQuery("select count(DISTINCT t) " + hql);
+//				int count = ((Number)countQuery.list().iterator().next()).intValue();
+//				list.setFullListSize(count);
+
 				return list;
 			}
 		});
@@ -495,4 +497,22 @@ public class SysCustDAOImpl extends HibernateDaoSupport implements SysCustDAO {
 		}
 	}
 	
+	
+	@Override
+	public List testFind() {
+		List list = getHibernateTemplate().executeFind(new HibernateCallback<List>() {
+
+			@Override
+			public List doInHibernate(Session session) throws HibernateException,
+					SQLException {
+				String hql = "select model from SysCust as model";
+				Query query = session.createQuery(hql);
+				query.setCacheable(true);
+				query.setCacheRegion("query.StreetTypes");
+				return query.list();
+			}
+		});
+
+		return list;
+	}
 }

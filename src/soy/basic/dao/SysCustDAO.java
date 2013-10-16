@@ -44,4 +44,6 @@ public interface SysCustDAO extends BaseDAO {
 	public PaginatedList findList(PaginatedList list, SysCustVO sysCustVO);
 
 	PaginatedList findDevelop(PaginatedList list, SysCustVO vo);
+
+	public List testFind();
 }

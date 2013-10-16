@@ -9,16 +9,15 @@
 		<property name="location" value="classpath:dataSource.properties"></property>
 	</bean>
 
-	<!-- 为了方便测试，开始阶段采用下面的数据源 ，在部署阶段再用这个 --> 
-	<bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
-		<property name="jndiName" value="${hibernate.jndiName}"></property>
+	<!-- 为了方便测试，开始阶段采用下面的数据源 ，在部署阶段再用这个 -->
+	<!-- <bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean"> 
+		<property name="jndiName" value="${hibernate.jndiName}"></property> </bean> -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://127.0.0.1:3306/custsys" />
+		<property name="username" value="root" />
+		<property name="password" value="huiquan" />
 	</bean>
-	<!--  
-	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"> 
-		<property name="driverClassName" value="com.mysql.jdbc.Driver" /> <property 
-		name="url" value="jdbc:mysql://127.0.0.1:3306/custsys" /> <property name="username" 
-		value="root" /> <property name="password" value="huiquan" /> </bean>
-		-->
 
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
@@ -30,6 +29,9 @@
 				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
 				<prop key="hibernate.show_sql">true</prop>
 				<prop key="hibernate.format_sql">${hibernate.format_sql}</prop>
+				<prop key="hibernate.cache.use_second_level_cache">true</prop>
+				<prop key="hibernate.cache.use_query_cache">true</prop>
+				<prop key="hibernate.cache.region.factory_class">net.sf.ehcache.hibernate.EhCacheRegionFactory</prop>
 				<!-- 为加快启动程序，所以注解掉 -->
 				<prop key="hibernate.hbm2ddl.auto">update</prop>
 
